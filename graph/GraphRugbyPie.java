@@ -40,7 +40,7 @@ public class GraphRugbyPie extends JFrame {
 
 		ArrayList<Sport> sportList = new ArrayList<Sport>();
 		ListSport sportLists = new ListSport(sportList);
-		sportList=sportLists.arraySport("RugbySport",4,"statistique");
+		sportList=sportLists.arraySport("RugbySport",id_utilisateur,"statistique");
 		System.out.println("graph+"+id_utilisateur);
 
 		
@@ -96,10 +96,10 @@ public class GraphRugbyPie extends JFrame {
 		return new ChartPanel(chart);
 	}
 
-	/*public static void main(String[] args) {
-		GraphRugbyPie demo = new GraphRugbyPie("Rugby");
+	public static void main(String[] args) {
+		GraphRugbyPie demo = new GraphRugbyPie("Rugby",3);
 		demo.pack();
 		RefineryUtilities.centerFrameOnScreen(demo);
 		demo.setVisible(true);
-	}*/
+	}
 }
