@@ -24,8 +24,11 @@ import org.hibernate.Transaction;
 
 import bd_init.DBConnection;
 import data.Utilisateur;
+import requete.GestionUtilisateur;
 
 public class Inscription extends JFrame {
+	private Utilisateur utilisateur;
+
   private JPanel container = new JPanel();
   private JPanel inscription = new JPanel();
   
@@ -59,7 +62,7 @@ public class Inscription extends JFrame {
 
   public Inscription(){
 	  
-    this.setTitle("Sports2-Inscription");
+    this.setTitle("Sports2");
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	this.setSize(new Dimension(width, height));
     this.setLocationRelativeTo(null);
@@ -144,20 +147,24 @@ public class Inscription extends JFrame {
 			String loginT=login.getText();
 			String passwordT=password.getText();
 
-
-
-
-
 				if(e1.getSource()== btnSubmit) {
-					if (naissance.getText().isEmpty() && nom.getText().isEmpty() && prenom.getText().isEmpty() && login.getText().isEmpty() && password.getText().isEmpty() ) {
+					if ((naissance.getText().isEmpty()) || (nom.getText().isEmpty()) || (prenom.getText().isEmpty()) || (login.getText().isEmpty()) || (password.getText().isEmpty() )) {
 						JOptionPane.showMessageDialog(null, "Veuillez saisir tous les champs");
 					}
 					else {
-						Session session = DBConnection.getSession();
-						@SuppressWarnings("unused")
-						Transaction persistTransaction1 = session.beginTransaction();
-						Utilisateur u1 = new Utilisateur(nomT,prenomT,naissanceT,loginT,passwordT);
-						session.save(u1);
+						GestionUtilisateur um = new GestionUtilisateur();
+						utilisateur = um.findUser(login.getText(), password.getText());
+
+						if(utilisateur != null)
+							JOptionPane.showMessageDialog(null, "Utilisateur deja existant");
+						else
+						{
+							Session session = DBConnection.getSession();
+							@SuppressWarnings("unused")
+							Transaction persistTransaction1 = session.beginTransaction();
+							Utilisateur u1 = new Utilisateur(nomT,prenomT,naissanceT,loginT,passwordT);
+							session.save(u1);
+						}
 
 					}
 				}
