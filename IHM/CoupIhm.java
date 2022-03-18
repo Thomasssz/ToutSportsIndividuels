@@ -1,93 +1,100 @@
 package IHM;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.jfree.ui.RefineryUtilities;
 
 import graph.GraphGolfBar;
-import graph.GraphGolfPoint;
 import requete.InsertGolf;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-
-import java.awt.GridLayout;
-import javax.swing.*;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-public class CoupIhm extends JFrame {
-  private JPanel container = new JPanel();
-  private JTextField parcours = new JTextField();
+public class CoupIhm extends JPanel {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4787154367605836672L;
+private JPanel parcoursP = new JPanel();
+  private JTextField parcours = new JTextField(14);
   private JLabel labelParcours = new JLabel("Parcours : ");
-  private JTextField coup_effectuer = new JTextField();
-  private JLabel labelCoupEffectuer = new JLabel("coup effectué : ");
-  private int user;
-
-  public CoupIhm(int user){
-	  this.user = user;
-    this.setTitle("Animation");
-    this.setSize(300, 300);
- //   this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setLocationRelativeTo(null);
-    container.setBackground(Color.white);
-    container.setLayout(new BorderLayout());
-    JPanel top = new JPanel();
-    JPanel bottom = new JPanel();
-    Font police = new Font("Arial", Font.BOLD, 14);
-    parcours.setFont(police);
-    parcours.setPreferredSize(new Dimension(150, 30));
-    coup_effectuer.setFont(police);
-    coup_effectuer.setPreferredSize(new Dimension(150, 30));
   
-    top.add(labelParcours);
-    top.add(parcours);
+  private JPanel coup_effectuerP = new JPanel();
+  private JTextField coup_effectuer = new JTextField(14);
+  private JLabel labelCoupEffectuer = new JLabel("Coup effectué : ");
+  
+  private JPanel buttonsP = new JPanel();
+  private JButton graphiqueButton;
+  
+  private Color background = new Color(63, 149, 245);
+  private int id_utilisateur;
+
+  public CoupIhm(int id_utilisateur){
+	super();
+	this.id_utilisateur = id_utilisateur;
+    this.setPreferredSize(new Dimension(300, 350));
+    this.setBackground(background);
+    this.setLayout(new FlowLayout());
     
-    bottom.add(labelCoupEffectuer);
-    bottom.add(coup_effectuer);
+    Font police = new Font("Arial", Font.BOLD, 11);
     
+    parcoursP.setLayout(new BorderLayout());
+    parcoursP.setPreferredSize(new Dimension(300, 60));
+    parcoursP.setBackground(Color.white);
+    parcoursP.setBorder(BorderFactory.createLineBorder(background, 10));
     
-    JButton graphiqueButton = new JButton("graphique");
+    coup_effectuerP.setLayout(new BorderLayout());
+    coup_effectuerP.setPreferredSize(new Dimension(300, 60));
+    coup_effectuerP.setBackground(Color.white);
+    coup_effectuerP.setBorder(BorderFactory.createLineBorder(background, 10));
+    
+    parcours.setFont(police);
+    coup_effectuer.setFont(police);
+
+    parcoursP.add(labelParcours,BorderLayout.WEST);
+    parcoursP.add(parcours,BorderLayout.EAST);
+
+    coup_effectuerP.add(labelCoupEffectuer,BorderLayout.WEST);
+    coup_effectuerP.add(coup_effectuer,BorderLayout.EAST);
+
+    graphiqueButton = new JButton("Graphique");
    	graphiqueButton.addActionListener(new ActionListener() {
-   		public void actionPerformed(ActionEvent e) {
+   		@Override
+		public void actionPerformed(ActionEvent e) {
    			if (parcours.getText().isEmpty() && coup_effectuer.getText().isEmpty() ) {
-   				
+
    			}
    			else {
    				String sParcours = parcours.getText();
    		        int iCoup_effectuer = Integer.parseInt(coup_effectuer.getText());
-   				InsertGolf insert = new InsertGolf(sParcours, iCoup_effectuer,user);
-   				insert.insertGolf_coup(sParcours, iCoup_effectuer,user);
-   				GraphGolfBar demo = new GraphGolfBar("Golf",user);
+   				InsertGolf insert = new InsertGolf(sParcours, iCoup_effectuer,id_utilisateur);
+   				insert.insertGolf_coup(sParcours, iCoup_effectuer,id_utilisateur);
+   				GraphGolfBar demo = new GraphGolfBar("Golf",id_utilisateur);
    				demo.pack();
    				RefineryUtilities.centerFrameOnScreen(demo);
    				demo.setVisible(true);
    			}
-   			
-   			
-   			
    		}
    	});
-   	bottom.add(graphiqueButton);
-    container.add(top, BorderLayout.NORTH);
-    container.add(bottom );
-
-    this.setContentPane(container);
-    this.setVisible(true);            
+   	graphiqueButton.setBackground(Color.WHITE);
+    graphiqueButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+    
+    buttonsP.setPreferredSize(new Dimension(300,80));
+    buttonsP.setLayout(new FlowLayout(10, 100, 20));
+    buttonsP.setBackground(background);
+   	buttonsP.add(graphiqueButton);
+   	
+   	this.add(parcoursP);
+   	this.add(coup_effectuerP );
+   	this.add(buttonsP);
   }
 }

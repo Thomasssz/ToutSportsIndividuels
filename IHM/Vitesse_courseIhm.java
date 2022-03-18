@@ -1,103 +1,88 @@
 package IHM;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
 
 import org.jfree.ui.RefineryUtilities;
 
 import graph.GraphCourseLine;
-import graph.GraphGolfPoint;
-import graph.GraphPlongerAreaLine;
 import requete.InsertCourse;
-import requete.InsertGolf;
-import requete.InsertPlonger;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+public class Vitesse_courseIhm extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3143340476719077115L;
+	private JPanel vitesse_moyenneP = new JPanel();
+	private JTextField vitesse_moyenne = new JTextField(11);
+	private JLabel labelVitesse = new JLabel("Vitesse moyenne : ");
 
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+	private JPanel buttonsP = new JPanel();
+	private JButton graphiqueButton;
 
+	private Color background = new Color(63, 149, 245);
+	private int id_utilisateur;
 
-import java.awt.GridLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+	public Vitesse_courseIhm(int id_utilisateur){
+		super();
+		this.id_utilisateur = id_utilisateur;
+		this.setPreferredSize(new Dimension(300, 350));
+		this.setBackground(background);
+		this.setLayout(new FlowLayout());
+		
+		Font police = new Font("Arial", Font.BOLD, 14);
+		
+		vitesse_moyenneP.setLayout(new BorderLayout());
+		vitesse_moyenneP.setPreferredSize(new Dimension(300, 60));
+		vitesse_moyenneP.setBackground(Color.white);
+		vitesse_moyenneP.setBorder(BorderFactory.createLineBorder(background, 10));
+			    
+	    vitesse_moyenne.setFont(police);
+	
+	    vitesse_moyenneP.add(labelVitesse,BorderLayout.WEST);
+	    vitesse_moyenneP.add(vitesse_moyenne,BorderLayout.EAST);
 
-public class Vitesse_courseIhm extends JFrame {
-  private JPanel container = new JPanel();
-  private JTextField vitesse_moyenne = new JTextField();
-  private JLabel labelVitesse = new JLabel("Vitesse moyenne  : ");
- /* private JTextField profondeur = new JTextField();
-  private JLabel labelProfondeur = new JLabel("profondeur : ");*/
-  private int user;
-
-  public Vitesse_courseIhm(int user){
-	  this.user = user;
-    this.setTitle("Animation");
-    this.setSize(300, 300);
-   // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setLocationRelativeTo(null);
-    container.setBackground(Color.white);
-    container.setLayout(new BorderLayout());
-    JPanel top = new JPanel();
-    JPanel bottom = new JPanel();
-    Font police = new Font("Arial", Font.BOLD, 14);
-    vitesse_moyenne.setFont(police);
-    vitesse_moyenne.setPreferredSize(new Dimension(150, 30));
-   /* profondeur.setFont(police);
-    profondeur.setPreferredSize(new Dimension(150, 30));*/
-  
-    top.add(labelVitesse);
-    top.add(vitesse_moyenne);
-    
-   // bottom.add(labelProfondeur);
-    //bottom.add(profondeur);
-    
-    
-    JButton graphiqueButton = new JButton("graphique");
-   	graphiqueButton.addActionListener(new ActionListener() {
-   		public void actionPerformed(ActionEvent e) {
-   			if (vitesse_moyenne.getText().isEmpty() /*&& profondeur.getText().isEmpty()*/ ) {
-   				
-   			}
-   			else {
-   		        float fVitesse = Float.valueOf(vitesse_moyenne.getText());
-   		       // float fProfondeur = Float.valueOf(profondeur.getText());
-   				InsertCourse insert = new InsertCourse(fVitesse,user);
-   				insert.insertCourse_vitesse(fVitesse, user);
-   				
-   					GraphCourseLine demo = new GraphCourseLine("Vitesse Moyenne",user);
-   					demo.pack();
-   					RefineryUtilities.centerFrameOnScreen(demo);
-   					demo.setVisible(true);
-   				
-   				
-   				
-   			}
-   			
-   			
-   			
-   		}
-   	});
-   	bottom.add(graphiqueButton);
-    container.add(top, BorderLayout.NORTH);
-    container.add(bottom );
-
-    this.setContentPane(container);
-    this.setVisible(true);            
-  }
-
+	    graphiqueButton = new JButton("Graphique");
+	   	graphiqueButton.addActionListener(new ActionListener() {
+	   		@Override
+			public void actionPerformed(ActionEvent e) {
+	   			if (vitesse_moyenne.getText().isEmpty() /*&& profondeur.getText().isEmpty()*/ ) {
+	
+	   			}
+	   			else {
+	   		        float fVitesse = Float.valueOf(vitesse_moyenne.getText());
+	   		       // float fProfondeur = Float.valueOf(profondeur.getText());
+	   				InsertCourse insert = new InsertCourse(fVitesse,id_utilisateur);
+	   				insert.insertCourse_vitesse(fVitesse, id_utilisateur);
+	
+					GraphCourseLine demo = new GraphCourseLine("Vitesse Moyenne",id_utilisateur);
+					demo.pack();
+					RefineryUtilities.centerFrameOnScreen(demo);
+					demo.setVisible(true);
+	   			}
+	   		}
+	   	});
+	   	graphiqueButton.setBackground(Color.WHITE);
+		graphiqueButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+		
+		buttonsP.setPreferredSize(new Dimension(300,80));
+		buttonsP.setLayout(new FlowLayout(10, 100, 20));
+		buttonsP.setBackground(background);
+		buttonsP.add(graphiqueButton);
+		
+		this.add(vitesse_moyenneP );
+		this.add(buttonsP);
+	}
 }

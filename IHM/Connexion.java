@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -34,7 +33,7 @@ import requete.GestionUtilisateur;
 public class Connexion extends JFrame
 {
 	private Utilisateur utilisateur;
-	private static JPanel global;
+	private JPanel global;
 	private JPanel icon ,connexion;
 	private JPanel log1, log2, controls;
 	private JLabel iconSportsL;
@@ -55,7 +54,7 @@ public class Connexion extends JFrame
 	 * Ce constructeur gère la disposition des éléments de l'accueil
 	 */
 	public Connexion(){
-		this.setTitle("Sport2");
+		this.setTitle("Sport2-Connexion");
 		this.setPreferredSize(new Dimension(width, height));
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
@@ -202,7 +201,7 @@ public class Connexion extends JFrame
 				{
 					//global.removeAll();
 
-					new Menu(id_utilisateur);
+					pageMenu(id_utilisateur);
 				}
 
 			}
@@ -219,33 +218,19 @@ public class Connexion extends JFrame
 	}
 
 	public void pageInscription(){
-
-
 		new Inscription();
 		this.setVisible(false);
-
 	}
 
-	/*public void pageMenu()
+	public void pageMenu(int id_utilisateur)
 	{
 		//global.add(new Connexion(), BorderLayout.CENTER);
 		//global.repaint();
-
 		new Menu(id_utilisateur);
 		this.setVisible(false);
-
-
-
-	}*/
-
-
-
-
+	}
+	
 	public static void main (String [] args) {
 		new Connexion();
 	}
-
-
-
-
 }
