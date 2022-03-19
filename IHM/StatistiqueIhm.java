@@ -121,11 +121,8 @@ public class StatistiqueIhm extends JPanel {
 
    				GraphRugbyPie demo = new GraphRugbyPie("Rugby",id_utilisateur);
    				simulation.removeAll();
-   				menu.pack();
-   				menu.setVisible(true);
    				simulation.add(demo);
-				menu.pack();
-				menu.setVisible(true);
+   				simulation.updateUI();
    			}
    		}
    	});

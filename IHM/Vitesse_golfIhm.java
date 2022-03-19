@@ -81,11 +81,8 @@ public class Vitesse_golfIhm extends JPanel {
 	   				insert.insertGolf_vitesse(fvitesse, fdistance,id_utilisateur);
 	   				GraphGolfPoint scatterplotdemo4 = new GraphGolfPoint("Vitesse / Distance",id_utilisateur);
 	   				simulation.removeAll();
-	   				menu.pack();
-	   				menu.setVisible(true);
 	   				simulation.add(scatterplotdemo4);
-	   				menu.pack();
-	   				menu.setVisible(true);
+	   				simulation.updateUI();
 	   			}
 	   		}
 	   	});   

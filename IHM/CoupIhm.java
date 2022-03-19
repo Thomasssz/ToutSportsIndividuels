@@ -81,11 +81,8 @@ private JPanel parcoursP = new JPanel();
    				insert.insertGolf_coup(sParcours, iCoup_effectuer,id_utilisateur);
    				GraphGolfBar demo = new GraphGolfBar("Golf",id_utilisateur);
    				simulation.removeAll();
-   				menu.pack();
-   				menu.setVisible(true);
    				simulation.add(demo);
-   				menu.pack();
-   				menu.setVisible(true);
+   				simulation.updateUI();   			
    			}
    		}
    	});

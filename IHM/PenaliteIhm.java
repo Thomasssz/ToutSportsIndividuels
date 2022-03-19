@@ -111,11 +111,8 @@ public class PenaliteIhm extends JPanel {
 	
 	   				GraphRugbyLine demo = new GraphRugbyLine("Penalité",id_utilisateur);
 	   				simulation.removeAll();
-	   				menu.pack();
-	   				menu.setVisible(true);
 	   				simulation.add(demo);
-	  				menu.pack();
-	  				menu.setVisible(true);
+	   				simulation.updateUI();
 	   			}
 	   		}
 	   	});

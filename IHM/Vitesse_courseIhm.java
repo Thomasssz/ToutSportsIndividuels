@@ -69,11 +69,8 @@ public class Vitesse_courseIhm extends JPanel {
 	
 					GraphCourseLine demo = new GraphCourseLine("Vitesse Moyenne",id_utilisateur);
 					simulation.removeAll();
-					menu.pack();
-	   				menu.setVisible(true);
 					simulation.add(demo);
-		  			menu.pack();
-		  			menu.setVisible(true);
+					simulation.updateUI();
 	   			}
 	   		}
 	   	});

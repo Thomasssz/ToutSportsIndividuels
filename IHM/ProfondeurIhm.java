@@ -84,11 +84,8 @@ public class ProfondeurIhm extends JPanel {
 	
 	   				GraphPlongerBarH demo = new GraphPlongerBarH("Plongee",id_utilisateur);
 	   				simulation.removeAll();
-	   				menu.pack();
-	   				menu.setVisible(true);
 	   				simulation.add(demo);
-	  				menu.pack();
-	  				menu.setVisible(true);
+	   				simulation.updateUI();
 	   			}
 	   		}
 	   	});

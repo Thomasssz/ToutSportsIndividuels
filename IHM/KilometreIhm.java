@@ -69,11 +69,8 @@ public class KilometreIhm extends JPanel {
 		
 					GraphCourseBar demo = new GraphCourseBar("Course",id_utilisateur);
 					simulation.removeAll();
-					menu.pack();
-	   				menu.setVisible(true);
 					simulation.add(demo);
-	   				menu.pack();
-	   				menu.setVisible(true);
+					simulation.updateUI();
 				}
 			}
 		});

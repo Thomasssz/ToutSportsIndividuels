@@ -83,11 +83,8 @@ public class OxygeneIhm extends JPanel {
    				SwingUtilities.invokeLater(() -> {
    			    GraphPlongerAreaLine demo = new GraphPlongerAreaLine("Area Chart Example | BORAJI.COM",id_utilisateur);
    			    simulation.removeAll();
-   			    menu.pack();
-				menu.setVisible(true);
    			    simulation.add(demo);
-  				menu.pack();
-  				menu.setVisible(true);
+   			    simulation.updateUI();
    			    });
    			}
    		}

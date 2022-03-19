@@ -56,6 +56,7 @@ public class Menu extends JFrame {
 	this.id_utilisateur = id_utilisateur;
 	frame.setTitle("Sport2-Menu");
 	frame.setSize(width, height);
+	frame.setMaximumSize(new Dimension(width,height));
 	frame.setResizable(false);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setLocationRelativeTo(null);
