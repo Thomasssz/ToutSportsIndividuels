@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -38,7 +39,7 @@ public class ProfondeurIhm extends JPanel {
 	private Color background = new Color(63, 149, 245);
 	private int id_utilisateur;
 	
-	public ProfondeurIhm(int id_utilisateur){
+	public ProfondeurIhm(int id_utilisateur, JPanel simulation, JFrame menu){
 		super();
 		this.id_utilisateur = id_utilisateur;
 		this.setPreferredSize(new Dimension(300, 350));
@@ -82,9 +83,12 @@ public class ProfondeurIhm extends JPanel {
 	   				insert.insertPlonger_profondeur(iProfondeur, fTemps,id_utilisateur);
 	
 	   				GraphPlongerBarH demo = new GraphPlongerBarH("Plongee",id_utilisateur);
-	   				demo.pack();
-	   				RefineryUtilities.centerFrameOnScreen(demo);
-	   				demo.setVisible(true);
+	   				simulation.removeAll();
+	   				menu.pack();
+	   				menu.setVisible(true);
+	   				simulation.add(demo);
+	  				menu.pack();
+	  				menu.setVisible(true);
 	   			}
 	   		}
 	   	});

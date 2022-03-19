@@ -68,8 +68,8 @@ public class Menu extends JFrame {
 	
 
 	//-------------- CONNECT PAGE ------------------//
+    displaySimulation();
     displayChoixSport();
-    //displaySimulation();
     System.out.println(coup.isSelected());
     
     frame.setContentPane(container);
@@ -150,56 +150,56 @@ public class Menu extends JFrame {
 	  public void actionPerformed(ActionEvent e) {
 		if (vitesse.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new Vitesse_golfIhm(id_utilisateur);
+			sportParameter = new Vitesse_golfIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
 			frame.pack();
 			frame.setVisible(true);
 		}
 		else if (coup.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new CoupIhm(id_utilisateur);
+			sportParameter = new CoupIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
 			frame.pack();
 			frame.setVisible(true);
 		}
 		else if (statistique.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new StatistiqueIhm(id_utilisateur);
+			sportParameter = new StatistiqueIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
 			frame.pack();
 			frame.setVisible(true);
 		}
 		else if (penalite.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new PenaliteIhm(id_utilisateur);
+			sportParameter = new PenaliteIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
 			frame.pack();
 			frame.setVisible(true);
 		}
 		else if (profondeur.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new ProfondeurIhm(id_utilisateur);
+			sportParameter = new ProfondeurIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
 			frame.pack();
 			frame.setVisible(true);
 		}
 		else if (oxygene.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new OxygeneIhm(id_utilisateur);
+			sportParameter = new OxygeneIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
 			frame.pack();
 			frame.setVisible(true);
 		}
 		else if (vitesse_course.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new Vitesse_courseIhm(id_utilisateur);
+			sportParameter = new Vitesse_courseIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
 			frame.pack();
 			frame.setVisible(true);
 		}
 		else if (kilometre.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new KilometreIhm(id_utilisateur);
+			sportParameter = new KilometreIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
 			frame.pack();
 			frame.setVisible(true);
@@ -212,17 +212,17 @@ public class Menu extends JFrame {
 		}
 		}
 	  });
-
-	  vitesse.setSelected(true);
 	  
+	  vitesse.setSelected(true);
+	
 	  container.add(choixSport, BorderLayout.WEST);
   }
   
   private void displaySimulation(){
 	  simulationSport =  new JPanel();
-	  simulationSport.setBackground(Color.RED);
+	  simulationSport.setBackground(background);
 	  simulationSport.setPreferredSize(new Dimension(700,700));
-	  simulationSport.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+	  //simulationSport.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 	  simulationSport.setLayout(new FlowLayout());
 	  
 	  container.add(simulationSport, BorderLayout.CENTER);

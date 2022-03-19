@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -46,7 +47,7 @@ public class PenaliteIhm extends JPanel {
 	private Color background = new Color(63, 149, 245);
 	private int id_utilisateur;
 	
-	public PenaliteIhm(int user){
+	public PenaliteIhm(int id_utilisateur, JPanel simulation, JFrame menu){
 		super();
 		this.id_utilisateur = id_utilisateur;
 	    this.setPreferredSize(new Dimension(300, 350));
@@ -105,13 +106,16 @@ public class PenaliteIhm extends JPanel {
 	   		        int iReussi = Integer.parseInt(reussi.getText());
 	   		        int iEchec = Integer.parseInt(echec.getText());
 	
-	   				InsertRugby insert = new InsertRugby(iPenalite_tenter, iDistance, iReussi, iEchec,user);
-	   				insert.insertRugby_penalite(iPenalite_tenter, iDistance, iReussi, iEchec,user);
+	   				InsertRugby insert = new InsertRugby(iPenalite_tenter, iDistance, iReussi, iEchec,id_utilisateur);
+	   				insert.insertRugby_penalite(iPenalite_tenter, iDistance, iReussi, iEchec,id_utilisateur);
 	
-	   				GraphRugbyLine demo = new GraphRugbyLine("Penalité",user);
-	   				demo.pack();
-	   				RefineryUtilities.centerFrameOnScreen(demo);
-	   				demo.setVisible(true);
+	   				GraphRugbyLine demo = new GraphRugbyLine("Penalité",id_utilisateur);
+	   				simulation.removeAll();
+	   				menu.pack();
+	   				menu.setVisible(true);
+	   				simulation.add(demo);
+	  				menu.pack();
+	  				menu.setVisible(true);
 	   			}
 	   		}
 	   	});

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -47,7 +48,7 @@ public class StatistiqueIhm extends JPanel {
   private int id_utilisateur;
   private Color background = new Color(63, 149, 245);
 
-  public StatistiqueIhm(int id_utilisateur){
+  public StatistiqueIhm(int id_utilisateur, JPanel simulation, JFrame menu){
 	super();
 	this.id_utilisateur = id_utilisateur;
 	this.setPreferredSize(new Dimension(300, 350));
@@ -119,11 +120,12 @@ public class StatistiqueIhm extends JPanel {
    				insert.insertRugby_statistique(sSaison, iMatch, iEssai, iPlaquage,id_utilisateur);
 
    				GraphRugbyPie demo = new GraphRugbyPie("Rugby",id_utilisateur);
-   			//	System.out.println("graph"+id_utilisateur);
-
-   				demo.pack();
-   				RefineryUtilities.centerFrameOnScreen(demo);
-   				demo.setVisible(true);
+   				simulation.removeAll();
+   				menu.pack();
+   				menu.setVisible(true);
+   				simulation.add(demo);
+				menu.pack();
+				menu.setVisible(true);
    			}
    		}
    	});

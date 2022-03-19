@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -38,7 +39,7 @@ public class Vitesse_golfIhm extends JPanel {
 	private Color background = new Color(63, 149, 245);
 	private int id_utilisateur;
 
-	public Vitesse_golfIhm(int id_utilisateur){
+	public Vitesse_golfIhm(int id_utilisateur, JPanel simulation, JFrame menu){
 		super();
 		this.id_utilisateur = id_utilisateur;
 	    this.setPreferredSize(new Dimension(300, 350));
@@ -79,9 +80,12 @@ public class Vitesse_golfIhm extends JPanel {
 	   				InsertGolf insert = new InsertGolf(fvitesse, fdistance,id_utilisateur);
 	   				insert.insertGolf_vitesse(fvitesse, fdistance,id_utilisateur);
 	   				GraphGolfPoint scatterplotdemo4 = new GraphGolfPoint("Vitesse / Distance",id_utilisateur);
-	   				//scatterplotdemo4.pack();
-	   				//RefineryUtilities.centerFrameOnScreen(scatterplotdemo4);
-	   				//scatterplotdemo4.setVisible(true);
+	   				simulation.removeAll();
+	   				menu.pack();
+	   				menu.setVisible(true);
+	   				simulation.add(scatterplotdemo4);
+	   				menu.pack();
+	   				menu.setVisible(true);
 	   			}
 	   		}
 	   	});   
@@ -96,11 +100,5 @@ public class Vitesse_golfIhm extends JPanel {
 	   	this.add(vitesseP);
 	   	this.add(distanceP);
 	   	this.add(buttonsP);
-	}
-	public float getVitesse(){
-		return Float.valueOf(vitesse.getText());
-	}
-	public float getDistance(){
-		return Float.valueOf(vitesse.getText());
 	}
 }
