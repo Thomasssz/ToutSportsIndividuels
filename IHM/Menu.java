@@ -16,6 +16,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import graph.GraphCourseBar;
+import graph.GraphCourseLine;
+import graph.GraphGolfBar;
+import graph.GraphGolfPoint;
+import graph.GraphPlongerAreaLine;
+import graph.GraphPlongerBarH;
+import graph.GraphRugbyLine;
+import graph.GraphRugbyPie;
+
 
 public class Menu extends JFrame {
   private JPanel container, profils, choixSport, listeSport, btnSimulationP, simulationSport;
@@ -153,6 +162,10 @@ public class Menu extends JFrame {
 			sportParameterC.remove(sportParameter);
 			sportParameter = new Vitesse_golfIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
+			GraphGolfPoint scatterplotdemo4 = new GraphGolfPoint("Vitesse / Distance",id_utilisateur);
+			simulationSport.removeAll();
+			simulationSport.add(scatterplotdemo4);
+			simulationSport.updateUI();
 			frame.pack();
 			frame.setVisible(true);
 		}
@@ -160,6 +173,10 @@ public class Menu extends JFrame {
 			sportParameterC.remove(sportParameter);
 			sportParameter = new CoupIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
+			GraphGolfBar demo = new GraphGolfBar("Golf",id_utilisateur);
+			simulationSport.removeAll();
+			simulationSport.add(demo);
+			simulationSport.updateUI();   
 			frame.pack();
 			frame.setVisible(true);
 		}
@@ -167,6 +184,10 @@ public class Menu extends JFrame {
 			sportParameterC.remove(sportParameter);
 			sportParameter = new StatistiqueIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
+			GraphRugbyPie demo = new GraphRugbyPie("Rugby",id_utilisateur);
+			simulationSport.removeAll();
+			simulationSport.add(demo);
+			simulationSport.updateUI();
 			frame.pack();
 			frame.setVisible(true);
 		}
@@ -174,6 +195,10 @@ public class Menu extends JFrame {
 			sportParameterC.remove(sportParameter);
 			sportParameter = new PenaliteIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
+			GraphRugbyLine demo = new GraphRugbyLine("Penalité",id_utilisateur);
+			simulationSport.removeAll();
+			simulationSport.add(demo);
+			simulationSport.updateUI();
 			frame.pack();
 			frame.setVisible(true);
 		}
@@ -181,6 +206,10 @@ public class Menu extends JFrame {
 			sportParameterC.remove(sportParameter);
 			sportParameter = new ProfondeurIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
+			GraphPlongerBarH demo = new GraphPlongerBarH("Plongee",id_utilisateur);
+			simulationSport.removeAll();
+			simulationSport.add(demo);
+			simulationSport.updateUI();
 			frame.pack();
 			frame.setVisible(true);
 		}
@@ -188,6 +217,10 @@ public class Menu extends JFrame {
 			sportParameterC.remove(sportParameter);
 			sportParameter = new OxygeneIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
+			GraphPlongerAreaLine demo = new GraphPlongerAreaLine("Area Chart Example | BORAJI.COM",id_utilisateur);
+			simulationSport.removeAll();
+			simulationSport.add(demo);
+			simulationSport.updateUI();
 			frame.pack();
 			frame.setVisible(true);
 		}
@@ -195,6 +228,10 @@ public class Menu extends JFrame {
 			sportParameterC.remove(sportParameter);
 			sportParameter = new Vitesse_courseIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
+			GraphCourseLine demo = new GraphCourseLine("Vitesse Moyenne",id_utilisateur);
+			simulationSport.removeAll();
+			simulationSport.add(demo);
+			simulationSport.updateUI();			
 			frame.pack();
 			frame.setVisible(true);
 		}
@@ -202,6 +239,10 @@ public class Menu extends JFrame {
 			sportParameterC.remove(sportParameter);
 			sportParameter = new KilometreIhm(id_utilisateur, simulationSport, frame);
 			sportParameterC.add(sportParameter);
+			GraphCourseBar demo = new GraphCourseBar("Course",id_utilisateur);
+			simulationSport.removeAll();
+			simulationSport.add(demo);
+			simulationSport.updateUI();			
 			frame.pack();
 			frame.setVisible(true);
 		}
@@ -228,9 +269,9 @@ public class Menu extends JFrame {
 	  
 	  container.add(simulationSport, BorderLayout.CENTER);
   }
-/*
+
   public static void main(String[] args) {
 
-  new Menu(14044044);
-  }*/
+  new Menu(3);
+  }
 }
