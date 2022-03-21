@@ -34,7 +34,7 @@ public class GraphRugbyLine extends JPanel {
 		ChartPanel chartPanel = new ChartPanel(chart);
 
 
-		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+		chartPanel.setPreferredSize(new java.awt.Dimension(640, 480));
 		add(chartPanel);
 	}
 

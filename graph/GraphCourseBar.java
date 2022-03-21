@@ -35,7 +35,7 @@ public class GraphCourseBar extends JPanel {
 		CategoryDataset dataset = createDataGolf();
 		JFreeChart chart = createChart(dataset);
 		ChartPanel chartPanel = new ChartPanel(chart);
-		chartPanel.setPreferredSize(new Dimension(500, 270));
+		chartPanel.setPreferredSize(new Dimension(640, 480));
 		add(chartPanel);
 	}
 
