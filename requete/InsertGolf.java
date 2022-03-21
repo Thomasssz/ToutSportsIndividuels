@@ -124,14 +124,18 @@ public class InsertGolf {
 			case "lac":
 				trou_golf = new Trou_golf(parcours,5, coup_effectuer);
 				break;
-			case "even":
+			case "practice":
 				trou_golf = new Trou_golf(parcours,3, coup_effectuer);
 				break;
 			case "winter":
 				trou_golf = new Trou_golf(parcours,3, coup_effectuer);
 				break;
-			
-						
+			case "medium":
+				trou_golf = new Trou_golf(parcours,4, coup_effectuer);
+				break;
+			case "hard":
+				trou_golf = new Trou_golf(parcours,7, coup_effectuer);
+				break;		
 		}
 		
 			g.addTrou_golf(trou_golf);
@@ -149,8 +153,4 @@ public class InsertGolf {
 		session.close();
 	}
 	
-	
-	
-
-
 }
