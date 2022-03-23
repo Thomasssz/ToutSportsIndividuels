@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import org.jfree.ui.RefineryUtilities;
 
 import graph.GraphCourseBar;
+import graph.GraphGolfPoint;
 import requete.InsertCourse;
 
 public class KilometreIhm extends JPanel {
@@ -35,7 +36,7 @@ public class KilometreIhm extends JPanel {
 	private Color background = new Color(63, 149, 245);
 	private int id_utilisateur;
 
-	public KilometreIhm(int id_utilisateur, JPanel simulation, JFrame menu){
+	public KilometreIhm(int id_utilisateur, JPanel simulationdisplay){
 		super();
 		this.id_utilisateur = id_utilisateur;
 		this.setPreferredSize(new Dimension(300, 350));
@@ -53,7 +54,12 @@ public class KilometreIhm extends JPanel {
 	   
 	    kilometreP.add(labelKilometre,BorderLayout.WEST);
 	    kilometreP.add(kilometre,BorderLayout.EAST);
-	
+	    
+	    GraphCourseBar simu = new GraphCourseBar("Course",id_utilisateur);
+		simulationdisplay.removeAll();
+		simulationdisplay.add(simu);
+		simulationdisplay.updateUI();
+		
 		graphiqueButton = new JButton("Graphique");
 		graphiqueButton.addActionListener(new ActionListener() {
 			@Override
@@ -67,10 +73,10 @@ public class KilometreIhm extends JPanel {
 					InsertCourse insert = new InsertCourse(fKilometre,id_utilisateur);
 					insert.insertCourse_kilometre(fKilometre, id_utilisateur);
 		
-					GraphCourseBar demo = new GraphCourseBar("Course",id_utilisateur);
-					simulation.removeAll();
-					simulation.add(demo);
-					simulation.updateUI();
+					GraphCourseBar simu = new GraphCourseBar("Course",id_utilisateur);
+					simulationdisplay.removeAll();
+					simulationdisplay.add(simu);
+					simulationdisplay.updateUI();
 				}
 			}
 		});

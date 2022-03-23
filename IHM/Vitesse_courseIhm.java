@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import org.jfree.ui.RefineryUtilities;
 
 import graph.GraphCourseLine;
+import graph.GraphRugbyPie;
 import requete.InsertCourse;
 
 public class Vitesse_courseIhm extends JPanel {
@@ -35,7 +36,7 @@ public class Vitesse_courseIhm extends JPanel {
 	private Color background = new Color(63, 149, 245);
 	private int id_utilisateur;
 
-	public Vitesse_courseIhm(int id_utilisateur, JPanel simulation, JFrame menu){
+	public Vitesse_courseIhm(int id_utilisateur, JPanel simulationdisplay){
 		super();
 		this.id_utilisateur = id_utilisateur;
 		this.setPreferredSize(new Dimension(300, 350));
@@ -54,6 +55,11 @@ public class Vitesse_courseIhm extends JPanel {
 	    vitesse_moyenneP.add(labelVitesse,BorderLayout.WEST);
 	    vitesse_moyenneP.add(vitesse_moyenne,BorderLayout.EAST);
 
+	    GraphCourseLine simu = new GraphCourseLine("Vitesse Moyenne",id_utilisateur);
+		simulationdisplay.removeAll();
+		simulationdisplay.add(simu);
+		simulationdisplay.updateUI();
+		
 	    graphiqueButton = new JButton("Graphique");
 	   	graphiqueButton.addActionListener(new ActionListener() {
 	   		@Override
@@ -67,10 +73,10 @@ public class Vitesse_courseIhm extends JPanel {
 	   				InsertCourse insert = new InsertCourse(fVitesse,id_utilisateur);
 	   				insert.insertCourse_vitesse(fVitesse, id_utilisateur);
 	
-					GraphCourseLine demo = new GraphCourseLine("Vitesse Moyenne",id_utilisateur);
-					simulation.removeAll();
-					simulation.add(demo);
-					simulation.updateUI();
+	   				GraphCourseLine simu = new GraphCourseLine("Vitesse Moyenne",id_utilisateur);
+					simulationdisplay.removeAll();
+					simulationdisplay.add(simu);
+					simulationdisplay.updateUI();
 	   			}
 	   		}
 	   	});

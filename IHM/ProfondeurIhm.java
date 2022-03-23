@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import org.jfree.ui.RefineryUtilities;
 
 import graph.GraphPlongerBarH;
+import graph.GraphRugbyLine;
 import requete.InsertPlonger;
 
 public class ProfondeurIhm extends JPanel {
@@ -39,7 +40,7 @@ public class ProfondeurIhm extends JPanel {
 	private Color background = new Color(63, 149, 245);
 	private int id_utilisateur;
 	
-	public ProfondeurIhm(int id_utilisateur, JPanel simulation, JFrame menu){
+	public ProfondeurIhm(int id_utilisateur, JPanel simulationdisplay){
 		super();
 		this.id_utilisateur = id_utilisateur;
 		this.setPreferredSize(new Dimension(300, 350));
@@ -67,6 +68,11 @@ public class ProfondeurIhm extends JPanel {
 	    tempsP.add(labelTemps,BorderLayout.WEST);
 	    tempsP.add(temps,BorderLayout.EAST);
 	
+	    GraphPlongerBarH simu = new GraphPlongerBarH("Plongee",id_utilisateur);
+		simulationdisplay.removeAll();
+		simulationdisplay.add(simu);
+		simulationdisplay.updateUI();
+
 	    graphiqueButton = new JButton("Graphique");
 	   	graphiqueButton.addActionListener(new ActionListener() {
 	   		@Override
@@ -82,10 +88,11 @@ public class ProfondeurIhm extends JPanel {
 	   				InsertPlonger insert = new InsertPlonger(iProfondeur, fTemps,id_utilisateur);
 	   				insert.insertPlonger_profondeur(iProfondeur, fTemps,id_utilisateur);
 	
-	   				GraphPlongerBarH demo = new GraphPlongerBarH("Plongee",id_utilisateur);
-	   				simulation.removeAll();
-	   				simulation.add(demo);
-	   				simulation.updateUI();
+	   				
+	   				GraphPlongerBarH simu = new GraphPlongerBarH("Plongee",id_utilisateur);
+		   			simulationdisplay.removeAll();
+		   			simulationdisplay.add(simu);
+		   			simulationdisplay.updateUI();
 	   			}
 	   		}
 	   	});

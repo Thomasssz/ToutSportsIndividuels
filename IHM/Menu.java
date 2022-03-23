@@ -16,18 +16,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import graph.GraphCourseBar;
-import graph.GraphCourseLine;
-import graph.GraphGolfBar;
-import graph.GraphGolfPoint;
-import graph.GraphPlongerAreaLine;
-import graph.GraphPlongerBarH;
-import graph.GraphRugbyLine;
-import graph.GraphRugbyPie;
-
 
 public class Menu extends JFrame {
-  private JPanel container, profils, choixSport, listeSport, btnSimulationP, simulationSport;
+  private JPanel container, profils, choixSport, listeSport, btnSimulationP, simulationSport, simulationdisplay,
+  btnReseauSocialP, btnComparerP;
 
   private JRadioButton vitesse = new JRadioButton("Vitesse");
   private JRadioButton coup = new JRadioButton("Trou");
@@ -78,14 +70,27 @@ public class Menu extends JFrame {
 	
 
 	//-------------- CONNECT PAGE ------------------//
+    displayReseauSocial();
     displaySimulation();
     displayChoixSport();
-    System.out.println(coup.isSelected());
     
     frame.setContentPane(container);
     frame.setVisible(true);
   }
-
+  private void displayReseauSocial() {
+		btnReseauSocialP = new JPanel();
+		btnReseauSocialP.setBackground(background);
+		btnReseauSocialP.setPreferredSize(new Dimension(300,60));
+		btnReseauSocialP.setLayout(new FlowLayout(10, 100, 20));
+		
+		JButton btnReseauSocial = new JButton("Reseau Social");
+		btnReseauSocial.setBackground(Color.WHITE);
+		btnReseauSocial.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+		
+		btnReseauSocialP.add(btnReseauSocial);
+		container.add(btnReseauSocialP, BorderLayout.SOUTH);	
+	}
+  
   private void displayChoixSport(){
 	  choixSport = new JPanel();
 	  choixSport.setBackground(background);
@@ -160,91 +165,46 @@ public class Menu extends JFrame {
 	  public void actionPerformed(ActionEvent e) {
 		if (vitesse.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new Vitesse_golfIhm(id_utilisateur, simulationSport, frame);
+			sportParameter = new Vitesse_golfIhm(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
-			GraphGolfPoint scatterplotdemo4 = new GraphGolfPoint("Vitesse / Distance",id_utilisateur);
-			simulationSport.removeAll();
-			simulationSport.add(scatterplotdemo4);
-			simulationSport.updateUI();
-			frame.pack();
-			frame.setVisible(true);
 		}
 		else if (coup.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new CoupIhm(id_utilisateur, simulationSport, frame);
+			sportParameter = new CoupIhm(id_utilisateur, simulationSport);
 			sportParameterC.add(sportParameter);
-			GraphGolfBar demo = new GraphGolfBar("Golf",id_utilisateur);
-			simulationSport.removeAll();
-			simulationSport.add(demo);
-			simulationSport.updateUI();   
-			frame.pack();
-			frame.setVisible(true);
 		}
 		else if (statistique.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new StatistiqueIhm(id_utilisateur, simulationSport, frame);
+			sportParameter = new StatistiqueIhm(id_utilisateur, simulationSport);
 			sportParameterC.add(sportParameter);
-			GraphRugbyPie demo = new GraphRugbyPie("Rugby",id_utilisateur);
-			simulationSport.removeAll();
-			simulationSport.add(demo);
-			simulationSport.updateUI();
-			frame.pack();
-			frame.setVisible(true);
+			
 		}
 		else if (penalite.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new PenaliteIhm(id_utilisateur, simulationSport, frame);
+			sportParameter = new PenaliteIhm(id_utilisateur, simulationSport);
 			sportParameterC.add(sportParameter);
-			GraphRugbyLine demo = new GraphRugbyLine("Penalité",id_utilisateur);
-			simulationSport.removeAll();
-			simulationSport.add(demo);
-			simulationSport.updateUI();
-			frame.pack();
-			frame.setVisible(true);
+			
 		}
 		else if (profondeur.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new ProfondeurIhm(id_utilisateur, simulationSport, frame);
+			sportParameter = new ProfondeurIhm(id_utilisateur, simulationSport);
 			sportParameterC.add(sportParameter);
-			GraphPlongerBarH demo = new GraphPlongerBarH("Plongee",id_utilisateur);
-			simulationSport.removeAll();
-			simulationSport.add(demo);
-			simulationSport.updateUI();
-			frame.pack();
-			frame.setVisible(true);
 		}
 		else if (oxygene.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new OxygeneIhm(id_utilisateur, simulationSport, frame);
+			sportParameter = new OxygeneIhm(id_utilisateur, simulationSport);
 			sportParameterC.add(sportParameter);
-			GraphPlongerAreaLine demo = new GraphPlongerAreaLine("Area Chart Example | BORAJI.COM",id_utilisateur);
-			simulationSport.removeAll();
-			simulationSport.add(demo);
-			simulationSport.updateUI();
-			frame.pack();
-			frame.setVisible(true);
+
 		}
 		else if (vitesse_course.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new Vitesse_courseIhm(id_utilisateur, simulationSport, frame);
+			sportParameter = new Vitesse_courseIhm(id_utilisateur, simulationSport);
 			sportParameterC.add(sportParameter);
-			GraphCourseLine demo = new GraphCourseLine("Vitesse Moyenne",id_utilisateur);
-			simulationSport.removeAll();
-			simulationSport.add(demo);
-			simulationSport.updateUI();			
-			frame.pack();
-			frame.setVisible(true);
 		}
 		else if (kilometre.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new KilometreIhm(id_utilisateur, simulationSport, frame);
+			sportParameter = new KilometreIhm(id_utilisateur, simulationSport);
 			sportParameterC.add(sportParameter);
-			GraphCourseBar demo = new GraphCourseBar("Course",id_utilisateur);
-			simulationSport.removeAll();
-			simulationSport.add(demo);
-			simulationSport.updateUI();			
-			frame.pack();
-			frame.setVisible(true);
 		}
 		else if (cotation.isSelected()){
 		
@@ -267,11 +227,18 @@ public class Menu extends JFrame {
 	  //simulationSport.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 	  simulationSport.setLayout(new FlowLayout());
 	  
+	  simulationdisplay = new JPanel();
+	  simulationdisplay.setBackground(background);
+	  simulationdisplay.setPreferredSize(new Dimension(700,600));
+	  
+	  simulationSport.add(simulationdisplay); 
+		
 	  container.add(simulationSport, BorderLayout.CENTER);
   }
-
+ 
+/*
   public static void main(String[] args) {
 
-  new Menu(3);
-  }
+  new Menu(14044044);
+  }*/
 }

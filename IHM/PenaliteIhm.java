@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 
 import org.jfree.ui.RefineryUtilities;
 
+import graph.GraphPlongerAreaLine;
 import graph.GraphRugbyLine;
 import requete.InsertRugby;
 
@@ -47,7 +48,7 @@ public class PenaliteIhm extends JPanel {
 	private Color background = new Color(63, 149, 245);
 	private int id_utilisateur;
 	
-	public PenaliteIhm(int id_utilisateur, JPanel simulation, JFrame menu){
+	public PenaliteIhm(int id_utilisateur, JPanel simulationdisplay){
 		super();
 		this.id_utilisateur = id_utilisateur;
 	    this.setPreferredSize(new Dimension(300, 350));
@@ -93,6 +94,11 @@ public class PenaliteIhm extends JPanel {
 	    echecP.add(labelEchec,BorderLayout.WEST);
 	    echecP.add(echec,BorderLayout.EAST);
 	
+	    GraphRugbyLine simu = new GraphRugbyLine("Penalité",id_utilisateur);
+		simulationdisplay.removeAll();
+		simulationdisplay.add(simu);
+		simulationdisplay.updateUI();
+		
 	    graphiqueButton = new JButton("Graphique");
 	   	graphiqueButton.addActionListener(new ActionListener() {
 	   		@Override
@@ -109,10 +115,10 @@ public class PenaliteIhm extends JPanel {
 	   				InsertRugby insert = new InsertRugby(iPenalite_tenter, iDistance, iReussi, iEchec,id_utilisateur);
 	   				insert.insertRugby_penalite(iPenalite_tenter, iDistance, iReussi, iEchec,id_utilisateur);
 	
-	   				GraphRugbyLine demo = new GraphRugbyLine("Penalité",id_utilisateur);
-	   				simulation.removeAll();
-	   				simulation.add(demo);
-	   				simulation.updateUI();
+	   				GraphRugbyLine simu = new GraphRugbyLine("Penalité",id_utilisateur);
+					simulationdisplay.removeAll();
+					simulationdisplay.add(simu);
+					simulationdisplay.updateUI();
 	   			}
 	   		}
 	   	});

@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 
 import org.jfree.ui.RefineryUtilities;
 
+import graph.GraphPlongerBarH;
 import graph.GraphRugbyPie;
 import requete.InsertRugby;
 
@@ -48,7 +49,7 @@ public class StatistiqueIhm extends JPanel {
   private int id_utilisateur;
   private Color background = new Color(63, 149, 245);
 
-  public StatistiqueIhm(int id_utilisateur, JPanel simulation, JFrame menu){
+  public StatistiqueIhm(int id_utilisateur, JPanel simulationdisplay){
 	super();
 	this.id_utilisateur = id_utilisateur;
 	this.setPreferredSize(new Dimension(300, 350));
@@ -103,6 +104,11 @@ public class StatistiqueIhm extends JPanel {
     plaquageP.add(labelPlaquage,BorderLayout.WEST);
     plaquageP.add(plaquage,BorderLayout.EAST);
 
+    GraphRugbyPie simu = new GraphRugbyPie("Rugby",id_utilisateur);
+	simulationdisplay.removeAll();
+	simulationdisplay.add(simu);
+	simulationdisplay.updateUI();
+		
     graphiqueButton = new JButton("Graphique");
    	graphiqueButton.addActionListener(new ActionListener() {
    		@Override
@@ -119,10 +125,10 @@ public class StatistiqueIhm extends JPanel {
    				InsertRugby insert = new InsertRugby(sSaison, iMatch, iEssai, iPlaquage,id_utilisateur);
    				insert.insertRugby_statistique(sSaison, iMatch, iEssai, iPlaquage,id_utilisateur);
 
-   				GraphRugbyPie demo = new GraphRugbyPie("Rugby",id_utilisateur);
-   				simulation.removeAll();
-   				simulation.add(demo);
-   				simulation.updateUI();
+   				GraphRugbyPie simu = new GraphRugbyPie("Rugby",id_utilisateur);
+	   			simulationdisplay.removeAll();
+	   			simulationdisplay.add(simu);
+	   			simulationdisplay.updateUI();
    			}
    		}
    	});

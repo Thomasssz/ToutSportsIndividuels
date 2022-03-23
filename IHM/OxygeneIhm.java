@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import graph.GraphCourseBar;
 import graph.GraphPlongerAreaLine;
 import requete.InsertPlonger;
 
@@ -38,7 +39,7 @@ public class OxygeneIhm extends JPanel {
   private Color background = new Color(63, 149, 245);
   private int id_utilisateur;
 
-  public OxygeneIhm(int id_utilisateur, JPanel simulation, JFrame menu){
+  public OxygeneIhm(int id_utilisateur, JPanel simulationdisplay){
 	 super();
 	 this.id_utilisateur = id_utilisateur;
 	 this.setPreferredSize(new Dimension(300, 350));
@@ -66,7 +67,11 @@ public class OxygeneIhm extends JPanel {
     profondeurP.add(labelProfondeur,BorderLayout.WEST);
     profondeurP.add(profondeur,BorderLayout.EAST);
 
-
+    GraphPlongerAreaLine simu = new GraphPlongerAreaLine("Area Chart Example | BORAJI.COM",id_utilisateur);
+	simulationdisplay.removeAll();
+	simulationdisplay.add(simu);
+	simulationdisplay.updateUI();
+	
     graphiqueButton = new JButton("Graphique");
    	graphiqueButton.addActionListener(new ActionListener() {
    		@Override
@@ -81,10 +86,11 @@ public class OxygeneIhm extends JPanel {
    				insert.insertPlonger_oxygene(fConsommation, fProfondeur,id_utilisateur);
 
    				SwingUtilities.invokeLater(() -> {
-   			    GraphPlongerAreaLine demo = new GraphPlongerAreaLine("Area Chart Example | BORAJI.COM",id_utilisateur);
-   			    simulation.removeAll();
-   			    simulation.add(demo);
-   			    simulation.updateUI();
+   			   
+   				GraphPlongerAreaLine simu = new GraphPlongerAreaLine("Area Chart Example | BORAJI.COM",id_utilisateur);
+				simulationdisplay.removeAll();
+				simulationdisplay.add(simu);
+				simulationdisplay.updateUI();
    			    });
    			}
    		}

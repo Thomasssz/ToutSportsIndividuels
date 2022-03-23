@@ -8,8 +8,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*; 
-import java.awt.event.*; 
-import javax.swing.*; 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -19,9 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import org.jfree.ui.RefineryUtilities;
-
 import graph.GraphGolfBar;
+import graph.GraphGolfPoint;
 import requete.InsertGolf;
 
 public class CoupIhm extends JPanel {
@@ -43,7 +40,7 @@ private JPanel parcoursP = new JPanel();
   
   private JPanel coup_effectuerP = new JPanel();
   private JTextField coup_effectuer = new JTextField(14);
-  private JLabel labelCoupEffectuer = new JLabel("Coup effectué : ");
+  private JLabel labelCoupEffectuer = new JLabel("Coup effectuÃ© : ");
   
   private JPanel buttonsP = new JPanel();
   private JButton graphiqueButton;
@@ -51,7 +48,7 @@ private JPanel parcoursP = new JPanel();
   private Color background = new Color(63, 149, 245);
   private int id_utilisateur;
 
-  public CoupIhm(int id_utilisateur, JPanel simulation, JFrame menu){
+  public CoupIhm(int id_utilisateur, JPanel simulationdisplay){
 	super();
 	this.id_utilisateur = id_utilisateur;
     this.setPreferredSize(new Dimension(300, 350));
@@ -100,7 +97,12 @@ private JPanel parcoursP = new JPanel();
 
     coup_effectuerP.add(labelCoupEffectuer,BorderLayout.WEST);
     coup_effectuerP.add(coup_effectuer,BorderLayout.EAST);
-
+    
+    GraphGolfBar simu = new GraphGolfBar("Golf",id_utilisateur);
+	simulationdisplay.removeAll();
+	simulationdisplay.add(simu);
+	simulationdisplay.updateUI(); 
+	
     graphiqueButton = new JButton("Graphique");
    	graphiqueButton.addActionListener(new ActionListener() {
    		@Override
@@ -140,10 +142,10 @@ private JPanel parcoursP = new JPanel();
    	   				insert.insertGolf_coup("hard", iCoup_effectuer,id_utilisateur);
    				}
    				
-   				GraphGolfBar demo = new GraphGolfBar("Golf",id_utilisateur);
-   				simulation.removeAll();
-   				simulation.add(demo);
-   				simulation.updateUI();   			
+   				GraphGolfBar simu = new GraphGolfBar("Golf",id_utilisateur);
+   				simulationdisplay.removeAll();
+   				simulationdisplay.add(simu);
+   				simulationdisplay.updateUI();   			
    			}
    		}
    	});

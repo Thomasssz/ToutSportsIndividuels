@@ -39,7 +39,7 @@ public class Vitesse_golfIhm extends JPanel {
 	private Color background = new Color(63, 149, 245);
 	private int id_utilisateur;
 
-	public Vitesse_golfIhm(int id_utilisateur, JPanel simulation, JFrame menu){
+	public Vitesse_golfIhm(int id_utilisateur, JPanel simulationdisplay){
 		super();
 		this.id_utilisateur = id_utilisateur;
 	    this.setPreferredSize(new Dimension(300, 350));
@@ -66,7 +66,12 @@ public class Vitesse_golfIhm extends JPanel {
 	
 	    distanceP.add(labelDistance,BorderLayout.WEST);
 	    distanceP.add(distance,BorderLayout.EAST);
-	
+	 
+	    GraphGolfPoint simu = new GraphGolfPoint("Vitesse / Distance",id_utilisateur);
+		simulationdisplay.removeAll();
+		simulationdisplay.add(simu);
+		simulationdisplay.updateUI();
+	  
 	    graphiqueButton = new JButton("Graphique");
 	   	graphiqueButton.addActionListener(new ActionListener() {
 	   		@Override
@@ -79,10 +84,10 @@ public class Vitesse_golfIhm extends JPanel {
 	   		        float fdistance = Float.valueOf(distance.getText());
 	   				InsertGolf insert = new InsertGolf(fvitesse, fdistance,id_utilisateur);
 	   				insert.insertGolf_vitesse(fvitesse, fdistance,id_utilisateur);
-	   				GraphGolfPoint scatterplotdemo4 = new GraphGolfPoint("Vitesse / Distance",id_utilisateur);
-	   				simulation.removeAll();
-	   				simulation.add(scatterplotdemo4);
-	   				simulation.updateUI();
+	   				GraphGolfPoint simu = new GraphGolfPoint("Vitesse / Distance",id_utilisateur);
+	   				simulationdisplay.removeAll();
+	   				simulationdisplay.add(simu);
+	   				simulationdisplay.updateUI();
 	   			}
 	   		}
 	   	});   
@@ -98,4 +103,5 @@ public class Vitesse_golfIhm extends JPanel {
 	   	this.add(distanceP);
 	   	this.add(buttonsP);
 	}
+	
 }

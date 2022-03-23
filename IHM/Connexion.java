@@ -55,7 +55,7 @@ public class Connexion extends JFrame
 	 */
 	public Connexion(){
 		this.setTitle("Sport2-Connexion");
-		this.setPreferredSize(new Dimension(width, height));
+		this.setSize(new Dimension(width, height));
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
