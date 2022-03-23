@@ -20,7 +20,7 @@ public class EscaladeSport extends Sport{
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Cotation_escalade.class)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Cotation_escalade> cotation_escalade;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Prise_escalade.class)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Prise_escalade> prise_escalade;
@@ -31,10 +31,16 @@ public class EscaladeSport extends Sport{
 	public EscaladeSport(Date date,String type ) {
 		super(date);
 		this.type = type;
-		this.cotation_escalade = new ArrayList<Cotation_escalade>();
-		this.prise_escalade = new ArrayList<Prise_escalade>();
+		this.cotation_escalade = new ArrayList<>();
+		this.prise_escalade = new ArrayList<>();
+	}
+	public void addCotation_escalade(Cotation_escalade c) {
+		cotation_escalade.add(c);
 	}
 
+	public void addPrise_escalade(Prise_escalade p) {
+		prise_escalade.add(p);
+	}
 	public String getType() {
 		return type;
 	}
@@ -64,10 +70,10 @@ public class EscaladeSport extends Sport{
 		return "EscaladeSport [type=" + type + ", cotation_escalade=" + cotation_escalade + ", prise_escalade="
 				+ prise_escalade + "]";
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }
