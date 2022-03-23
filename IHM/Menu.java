@@ -206,7 +206,9 @@ public class Menu extends JFrame {
 			sportParameterC.add(sportParameter);
 		}
 		else if (cotation.isSelected()){
-		
+			sportParameterC.remove(sportParameter);
+			sportParameter = new CotationIHM(id_utilisateur, simulationSport);
+			sportParameterC.add(sportParameter);
 		}
 		else if (prise.isSelected()){
 		
