@@ -1,14 +1,17 @@
 package graph;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -28,7 +31,15 @@ public class GraphEscaladeLine extends JPanel {
 		this.user = user;
 		XYDataset dataset = createDataset();
 		JFreeChart chart = createChart(dataset);
-
+		 XYPlot plot =  chart.getXYPlot();
+		 XYItemRenderer renderer = plot.getRenderer();
+		 renderer.setSeriesPaint(0, Color.GRAY);
+		 renderer.setSeriesPaint(1, Color.GREEN);
+		 renderer.setSeriesPaint(2, Color.BLUE);
+		 renderer.setSeriesPaint(3, Color.YELLOW);
+		 renderer.setSeriesPaint(4, Color.ORANGE);
+		 renderer.setSeriesPaint(5, Color.RED);
+		 
 		ChartPanel chartPanel = new ChartPanel(chart);
 
 
@@ -90,6 +101,7 @@ public class GraphEscaladeLine extends JPanel {
 			}
 		}
 		XYSeriesCollection dataset = new XYSeriesCollection();
+
 		dataset.addSeries(series1);
 		dataset.addSeries(series2);
 		dataset.addSeries(series3);
@@ -102,7 +114,6 @@ public class GraphEscaladeLine extends JPanel {
 	}
 
 	private JFreeChart createChart(XYDataset dataset) {
-
 		return ChartFactory.createXYLineChart("Tentatives Block Cotation", "Block", "Tentatives", dataset, PlotOrientation.VERTICAL, true, true, false);
 
 	}
