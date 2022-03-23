@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+import data.Amis;
 import data.Cotation_escalade;
 import data.CourseSport;
 import data.EscaladeSport;
@@ -44,6 +45,9 @@ public class DBConnection {
 			config.addAnnotatedClass(EscaladeSport.class);
 			config.addAnnotatedClass(Prise_escalade.class);
 			config.addAnnotatedClass(Cotation_escalade.class);
+			config.addAnnotatedClass(Amis.class);
+			
+
 
 
 
