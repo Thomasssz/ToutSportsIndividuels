@@ -10,8 +10,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -61,6 +63,7 @@ public class Vitesse_courseIhm extends JPanel {
 		simulationdisplay.updateUI();
 		
 	    graphiqueButton = new JButton("Graphique");
+	    //seComparerButton = new JButton("Se comparer");
 	   	graphiqueButton.addActionListener(new ActionListener() {
 	   		@Override
 			public void actionPerformed(ActionEvent e) {
@@ -77,17 +80,42 @@ public class Vitesse_courseIhm extends JPanel {
 					simulationdisplay.removeAll();
 					simulationdisplay.add(simu);
 					simulationdisplay.updateUI();
-	   			}
+	   			} 
 	   		}
 	   	});
 	   	graphiqueButton.setBackground(Color.WHITE);
 		graphiqueButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
 		
-		buttonsP.setPreferredSize(new Dimension(300,80));
+		buttonsP.setPreferredSize(new Dimension(300,400));
 		buttonsP.setLayout(new FlowLayout(10, 100, 20));
 		buttonsP.setBackground(background);
 		buttonsP.add(graphiqueButton);
 		
+		String[] listeAmi = {"Ami1", "Ami2", "Ami3"};
+
+        JComboBox<String> jComboBox = new JComboBox<>(listeAmi);
+
+        JButton comparaison = new JButton("Comparaison");
+
+
+        JLabel jLabel = new JLabel();
+        jLabel.setText("Se comparer avec un ami ?");
+
+        buttonsP.add(jLabel);
+        buttonsP.add(comparaison);
+        buttonsP.add(jComboBox);
+        
+
+        comparaison.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	GraphCourseLine comp = new GraphCourseLine("Vitesse Moyenne",id_utilisateur);
+            	new Comparaison(id_utilisateur);
+            }
+        });
+		
+        buttonsP.add(comparaison);
+        
 		this.add(vitesse_moyenneP );
 		this.add(buttonsP);
 	}
