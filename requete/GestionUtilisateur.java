@@ -22,7 +22,9 @@ public class GestionUtilisateur
 	/**
 	 * default Constructor
 	 */
-	public GestionUtilisateur() {	}
+	public GestionUtilisateur() {	
+		
+	}
 	
 	/**
 	 * Constructor with a user as parameter
@@ -72,7 +74,6 @@ public class GestionUtilisateur
 		{
 			System.out.println(result.size() + " utilisateur ok ");
 			u = (Utilisateur) result.get(0);
-			System.out.println(u);
 		}
 		else
 			System.out.println("Inconnu");
@@ -100,10 +101,7 @@ public class GestionUtilisateur
 			System.out.println(result.size() + " Utilisateur ok");
 			u = (Utilisateur) result.get(0);
 			id=u.getId_utilisteur();
-			System.out.println(id);
 
-			//System.out.println(" test"+u);
-			System.out.println(id);
 
 		}
 		else
@@ -114,6 +112,32 @@ public class GestionUtilisateur
 		session.close();
 		
 		return id;
+	}
+	public Utilisateur findID(int id_utilisateur) {
+		session = DBConnection.getSession();
+
+		Query query = session.createQuery("from Utilisateur where id_utilisateur = :id_utilisateur");
+		query.setInteger("id_utilisateur", id_utilisateur);
+		Utilisateur u = null;
+		//int id=0;
+
+		@SuppressWarnings("rawtypes")
+		List result = query.list();
+
+		if(result.size() == 1)
+		{
+			u = (Utilisateur) result.get(0);
+			
+
+		}
+		else
+			System.out.println("inconnu");
+
+			
+		
+		session.close();
+		
+		return u;
 	}
 	
 	
