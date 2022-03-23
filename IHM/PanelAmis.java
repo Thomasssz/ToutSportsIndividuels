@@ -342,7 +342,7 @@ private int j=0;
 			GestionAmis ga = new GestionAmis();
 			GestionUtilisateur gm = new GestionUtilisateur();
 			String nomAmis=rechercheAmis.getText();
-
+			//Amis dejaAmis = new Amis();
 			if(e1.getSource() == rechercher) {
 
 				if ((nomAmis.isEmpty())) {
@@ -384,56 +384,41 @@ private int j=0;
 								  id_amis = amis.getId_utilisteur();
 								  ajoutAmis = ga.findIdAmis(id_amis,id_utilisateur);
 								  utilisateur = gm.findID(id_utilisateur);
-								 System.out.println(amis);
+								  //dejaAmis = 
+								  int cas1;
+								  int cas2;
+								  
 
 								  if (ajoutAmis == null ) {
 									  if (amis.getId_utilisteur() == utilisateur.getId_utilisteur()) {
 											JOptionPane.showMessageDialog(null, "Vous ne pouvez pas vous ajouter vous meme a votre liste d'amis");
 
 									  }
-									/*  else if (amis == null) {
+									 /* else if (ga._) {
 											JOptionPane.showMessageDialog(null, "Utilisateur est deja dans votre liste d'amis22");
 
 									  }*/
 									  else {
+										  cas1 =  ga.dejaAmis(amis,utilisateur);
+											 //System.out.println("test deja amis"+cas1);
+											 
+											  cas2 =  ga.dejaAmis(utilisateur,amis);
+												 //System.out.println("test deja amis deuxieme"+cas2);
+											  if(cas1 == 1 || cas2 == 1) {
+													JOptionPane.showMessageDialog(null, "Utilisateur est deja dans votre liste d'amis");
+
+											  }
+											  else {
+
+
 										  int a = ga.requeteAmis(amis, utilisateur);
-										  System.out.println(a);
+										 // System.out.println(a);
 											JOptionPane.showMessageDialog(null, "Requete d'amis envoyé");
 											
-											
+											  }
 
 										  
-										//  ga.addAmis(amis, utilisateur);
-									/*	  JPanel panTitreAmis = new JPanel();
-											lblNewLabel = new JLabel("Liste d'amis");
-											lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-											lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-											lblNewLabel.setForeground(Color.BLACK);
-											lblNewLabel.setBounds(60, 22, 279, 21);
-											
-										  list = new JList(jlistAmis());
-										   list.setOpaque(false);
-										   list.setBackground(new Color(255, 255, 255));
-										   list.setForeground(Color.BLACK);
-										   list.setFont(new Font("Times New Roman", Font.PLAIN, 14));   
-										  JScrollPane pane = new JScrollPane(list);
-										  pane.setOpaque(false);
-										  pane.getViewport().setOpaque(false);
-										  JPanel zoneBtnAfficher = new JPanel();
-										  zoneBtnAfficher.setLayout(new GridLayout(0,1));
-										  afficher = new JButton("Afficher");
-										  zoneBtnAfficher.add(afficher);
-										  listAmis.removeAll();
-										  listAmis.add(pane, BorderLayout.CENTER);
-										  listAmis.add(zoneBtnAfficher,BorderLayout.SOUTH);
-
-										  panTitreAmis.add(lblNewLabel);
-										  afficher.addActionListener(new Fonction());
-
-											listAmis.add(panTitreAmis,BorderLayout.NORTH);
-											listAmis.updateUI();
-											listAmis.revalidate();
-											listAmis.repaint();*/
+									
 									  }
 									  
 								  }
