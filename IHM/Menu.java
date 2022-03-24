@@ -90,15 +90,16 @@ public class Menu extends JFrame {
 		container.add(btnReseauSocialP, BorderLayout.SOUTH);
 		
 		btnReseauSocial.addActionListener(new ActionListener() {
-			  @Override
-			  public void actionPerformed(ActionEvent e) {
-				  container.removeAll();
-				  container.add(new PanelAmis(id_utilisateur));
-				  container.updateUI();
-				  container.revalidate();
-				  container.repaint();
-			  	}
-		});
+	  @Override
+	  public void actionPerformed(ActionEvent e) {
+		  container.removeAll();
+		  container.add(new PanelAmis(id_utilisateur));
+		  container.updateUI();
+		  container.revalidate();
+		  container.repaint();
+	  	}
+	  
+	  });
 	}
   
   private void displayChoixSport(){
@@ -170,12 +171,13 @@ public class Menu extends JFrame {
 	  sportParameterC.add(sportParameter);
 	  choixSport.add(sportParameterC);
 	  
+	  
 	  btnSimulation.addActionListener(new ActionListener() {
 	  @Override
 	  public void actionPerformed(ActionEvent e) {
 		if (vitesse.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new Vitesse_golfIhm(id_utilisateur, simulationSport);
+			sportParameter = new Vitesse_golfIhm(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
 		}
 		else if (coup.isSelected()) {
@@ -248,9 +250,9 @@ public class Menu extends JFrame {
 	  container.add(simulationSport, BorderLayout.CENTER);
   }
  
-
+/*
   public static void main(String[] args) {
 
   new Menu(14044044);
-  }
+  }*/
 }
