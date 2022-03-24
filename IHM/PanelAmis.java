@@ -199,6 +199,7 @@ private int j=0;
 		panLigneDemande = new JPanel[amisList.size()];
 		
 		for(int i=0 ; i<amisList.size() ; i++) {
+			if (amisList.get(i).getAccepter() == 0) {
 			panLigneDemande[i] = new JPanel();
 			panLigneDemande[i].setLayout(new GridLayout(0,3));
 			panLigneDemande[i].setName(""+i);
@@ -207,13 +208,13 @@ private int j=0;
 			panLigneDemande[i].add(nomLoginDemande[i]);
 			btnAccepter[i] = new JButton("Accepter");
 			btnRefuser[i] = new JButton("Refuser");
-			btnAccepter[i].setName(""+nomLoginDemande[i].getText());
-			//btnRefuser[i].setName(""+ i);;
+			btnAccepter[i].setName(nomLoginDemande[i].getText());
+			panLigneDemande[i].setName(nomLoginDemande[i].getText());
+			btnRefuser[i].setName(nomLoginDemande[i].getText());
 			panLigneDemande[i].add(btnAccepter[i]);
 			panLigneDemande[i].add(btnRefuser[i]);
 
 			panLoginDemande.add(panLigneDemande[i]);
-			//panLoginDemande.add(btnRefuser[i]);
 			
 			btnAccepter[i].addActionListener(new ActionListener() {
 				  @Override
@@ -229,8 +230,9 @@ private int j=0;
 					     if (source instanceof JButton) {
 					        JButton button = (JButton) source;
 					        String login = button.getName();
+					        String panelLogin; 
 
-					        System.out.println(login);		
+					      //  System.out.println(login);		
 					        
 					        amisDemandeList = ga.arrayDemandeAmis(id_utilisateur);
 						    amis = ga.findUser(login);
@@ -271,6 +273,17 @@ private int j=0;
 									listAmis.updateUI();
 									listAmis.revalidate();
 									listAmis.repaint();
+									
+									for (int i = 0; i<amisDemandeList.size(); i++) {
+										panelLogin = panLigneDemande[i].getName();
+
+										if (panLigneDemande[i].getName() == login) {
+											panLigneDemande[i].removeAll();
+											panLigneDemande[i].updateUI();
+											panLigneDemande[i].revalidate();
+											panLigneDemande[i].repaint();
+										}
+									}
 									 
 									
 					     }
@@ -281,9 +294,53 @@ private int j=0;
 				  @Override
 				  public void actionPerformed(ActionEvent e) {
 					  System.out.println("Refuser");
+					  Object source = e.getSource();
+
+					  GestionAmis ga = new GestionAmis();
+						GestionUtilisateur gm = new GestionUtilisateur();
+					 	ArrayList<Amis> amisDemandeList = new ArrayList<>();
+					 	//ArrayList<Amis> amisList = new ArrayList<>();
+
+						  
+					     if (source instanceof JButton) {
+					        JButton button = (JButton) source;
+					        String login = button.getName();
+					        String panelLogin; 
+
+					      //  System.out.println(login);		
+					        
+					        amisDemandeList = ga.arrayDemandeAmis(id_utilisateur);
+						    amis = ga.findUser(login);
+							utilisateur = gm.findID(id_utilisateur);
+
+							//ga.addAmis(amis, utilisateur);//ajout de l'amis apres avoir accepter
+							//ga.deleteAmis(amis, utilisateur);//ajout de l'amis apres avoir accepter
+							ga.deleteAmis(utilisateur,amis );//ajout de l'amis apres avoir accepter
+							
+							for (int i = 0; i<amisDemandeList.size(); i++) {
+								panelLogin = panLigneDemande[i].getName();
+								//System.out.println(panelLogin+ "   "+ login);
+								System.out.println(panelLogin);
+
+								//amisDemandeList.remove(amisDemandeList.get(i));
+
+								if (panLigneDemande[i].getName() == login) {
+									panLigneDemande[i].removeAll();
+									panLigneDemande[i].updateUI();
+									panLigneDemande[i].revalidate();
+									panLigneDemande[i].repaint();
+								}
+								//System.out.println("apres supppr  "   +amisDemandeList);
+
+
+							}
+						}
 				  	}
 					  
 				  });
+			
+			}
+			
 		}
 		
 		
@@ -440,7 +497,7 @@ private int j=0;
 				String loginAmis;
 				if(!list.isSelectionEmpty()) {
 				    loginAmis = (String) list.getSelectedValue();
-					System.out.println(loginAmis);
+					//System.out.println(loginAmis);
 					amis = ga.findUser(loginAmis);
 					
 					lblInfo.setVerticalAlignment(SwingConstants.NORTH);
@@ -472,6 +529,8 @@ private int j=0;
 							  utilisateur = gm.findID(id_utilisateur);
 
 							  ga.deleteAmis(amis, utilisateur);
+							  ga.deleteAmis(utilisateur,amis );
+
 							//System.out.println("amis "+amis);
 
 							  JPanel panTitreAmis = new JPanel();
