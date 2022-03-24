@@ -52,6 +52,28 @@ public class GestionAmis {
 
 	}
 	
+	public int dejaAmis(Utilisateur amis,Utilisateur user) {
+		int valider = 0;
+		session = DBConnection.getSession();
+		transaction = session.beginTransaction();
+		Query query = session.createQuery("from Amis where utilisateur_id_utilisateur ="+user.getId_utilisteur()+" and amis_id_utilisateur ="+amis.getId_utilisteur());
+		List result = query.list();
+		//Utilisateur u = null;
+
+		if(result.size() == 1)
+		{
+			valider=1;
+
+		}
+		else {
+			valider=0;
+		}
+		
+		
+		transaction.commit();
+		return valider;
+	}
+	
 	public int requeteAmis(Utilisateur amis,Utilisateur user) {
 		Amis ajoutAmis = new Amis(amis,user);
 		session = DBConnection.getSession();
@@ -77,7 +99,7 @@ public class GestionAmis {
 
 		if(result.size() == 1)
 		{
-			System.out.println(result.size() + " cest ok ");
+			//System.out.println(result.size() + " cest ok ");
 			deleteAmis = (Amis) result.get(0);
 			System.out.println(deleteAmis);
 			session.delete(deleteAmis);
