@@ -31,9 +31,10 @@ public class InsertEscalade {
 		this.tentatives = tentatives;
 		this.user = user;
 	}
-	public InsertEscalade(int prisesMin, int prises) {
+	public InsertEscalade(int block, int prisesMin, int prises, int user) {
 		this.prisesMin = prisesMin;
 		this.prises = prises;
+		this.user = user;		
 	}
 	
 	public String getCotation() {
@@ -118,7 +119,7 @@ public class InsertEscalade {
 		session.close();
 	}
 	
-	public void insertEscalade_prise(int prisesMin, int prises , int user) {
+	public void insertEscalade_prise(int block, int prisesMin, int prises , int user) {
 		Date date = new Date(2022, 05, 05);
 		Session session = DBConnection.getSession();
 		Transaction persistTransaction1 = session.beginTransaction();
@@ -129,7 +130,7 @@ public class InsertEscalade {
 		EscaladeSport g = new EscaladeSport (date,"prise_escalade");
 		g.setUtilisateur(utilisateur1);
 
-		Prise_escalade prise_escalade = new Prise_escalade(prisesMin, prises);
+		Prise_escalade prise_escalade = new Prise_escalade(block, prisesMin, prises);
 		g.addPrise_escalade(prise_escalade);
 
 		session.save(prise_escalade);
