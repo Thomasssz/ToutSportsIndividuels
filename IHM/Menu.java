@@ -100,7 +100,7 @@ public class Menu extends JFrame {
 	  	}
 	  
 	  });
-	}
+  }
   
   private void displayChoixSport(){
 	  choixSport = new JPanel();
@@ -171,7 +171,6 @@ public class Menu extends JFrame {
 	  sportParameterC.add(sportParameter);
 	  choixSport.add(sportParameterC);
 	  
-	  
 	  btnSimulation.addActionListener(new ActionListener() {
 	  @Override
 	  public void actionPerformed(ActionEvent e) {
@@ -182,49 +181,51 @@ public class Menu extends JFrame {
 		}
 		else if (coup.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new CoupIhm(id_utilisateur, simulationSport);
+			sportParameter = new CoupIhm(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
 		}
 		else if (statistique.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new StatistiqueIhm(id_utilisateur, simulationSport);
+			sportParameter = new StatistiqueIhm(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
 			
 		}
 		else if (penalite.isSelected()) {
 			sportParameterC.remove(sportParameter);
-			sportParameter = new PenaliteIhm(id_utilisateur, simulationSport);
+			sportParameter = new PenaliteIhm(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
 			
 		}
 		else if (profondeur.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new ProfondeurIhm(id_utilisateur, simulationSport);
+			sportParameter = new ProfondeurIhm(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
 		}
 		else if (oxygene.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new OxygeneIhm(id_utilisateur, simulationSport);
+			sportParameter = new OxygeneIhm(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
 
 		}
 		else if (vitesse_course.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new Vitesse_courseIhm(id_utilisateur, simulationSport);
+			sportParameter = new Vitesse_courseIhm(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
 		}
 		else if (kilometre.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new KilometreIhm(id_utilisateur, simulationSport);
+			sportParameter = new KilometreIhm(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
 		}
 		else if (cotation.isSelected()){
 			sportParameterC.remove(sportParameter);
-			sportParameter = new CotationIHM(id_utilisateur, simulationSport);
+			sportParameter = new CotationIHM(id_utilisateur, simulationdisplay);
 			sportParameterC.add(sportParameter);
 		}
 		else if (prise.isSelected()){
-		
+			sportParameterC.remove(sportParameter);
+			sportParameter = new PriseIHM(id_utilisateur, simulationdisplay);
+			sportParameterC.add(sportParameter);
 		}
 		}
 	  });
