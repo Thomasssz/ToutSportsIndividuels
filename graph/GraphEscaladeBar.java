@@ -54,8 +54,8 @@ public class GraphEscaladeBar extends JPanel {
 		 CategoryPlot plot =  chart.getCategoryPlot();
 		 GroupedStackedBarRenderer renderer = new GroupedStackedBarRenderer();
 		 KeyToGroupMap map = new KeyToGroupMap("toutesPrises");
-		 map.mapKeyToGroup("prises", "toutesPrises");
 		 map.mapKeyToGroup("prisesMin", "toutesPrises");
+		 map.mapKeyToGroup("prises", "toutesPrises");
 		 renderer.setSeriesToGroupMap(map);
 		 
 		 renderer.setItemMargin(0.0);
@@ -91,8 +91,9 @@ public class GraphEscaladeBar extends JPanel {
 					prises = e.getPrises();
 					
 					String sblock = Integer.toString(block);
-					dataset.addValue(prises, "prises", sblock);
 					dataset.addValue(prisesMin, "prisesMin", sblock);
+					dataset.addValue(prises, "prises", sblock);
+					
 				}
 			}
 		}
