@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -68,7 +69,8 @@ public class Inscription extends JFrame {
     this.setLocationRelativeTo(null);
     this.setResizable(false);
     this.setLayout(new FlowLayout());
-    
+    this.setIconImage(new ImageIcon(getClass().getResource("../images/ballon.jpg")).getImage());
+	
     Font police = new Font("Arial", Font.BOLD, 14);
     
     container.setPreferredSize(new Dimension(width, height));
@@ -165,19 +167,13 @@ public class Inscription extends JFrame {
 							Utilisateur u1 = new Utilisateur(nomT,prenomT,naissanceT,loginT,passwordT);
 							session.save(u1);
 						}
-
 					}
 				}
-
 				if(e1.getSource() == retour) {
 					retour();
 				}
-
 			}
 		}
-
-
-
 	public void retour()
 	{
 		//global.add(new Connexion(), BorderLayout.CENTER);
@@ -186,10 +182,5 @@ public class Inscription extends JFrame {
 		new Connexion();
 		this.setVisible(false);
 
-
-
 	}
-
-
-
 }

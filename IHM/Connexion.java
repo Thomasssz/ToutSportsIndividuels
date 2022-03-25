@@ -60,6 +60,7 @@ public class Connexion extends JFrame
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setLayout(new FlowLayout());
+		this.setIconImage(new ImageIcon(getClass().getResource("../images/ballon.jpg")).getImage());
 
 		//-------------- CONTENT PANE ------------------//
 		global = new JPanel();

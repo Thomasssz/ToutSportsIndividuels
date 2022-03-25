@@ -7,14 +7,21 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 
 
 public class Menu extends JFrame {
@@ -60,7 +67,7 @@ public class Menu extends JFrame {
 	frame.setResizable(false);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setLocationRelativeTo(null);
- 
+	frame.setIconImage(new ImageIcon(getClass().getResource("../images/ballon.jpg")).getImage());
 	//-------------- CONTENT PANE ------------------//
     container = new JPanel();
     container.setPreferredSize(new Dimension(width, height));
@@ -87,7 +94,7 @@ public class Menu extends JFrame {
 		btnReseauSocial.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
 		
 		btnReseauSocialP.add(btnReseauSocial);
-		container.add(btnReseauSocialP, BorderLayout.SOUTH);
+		container.add(btnReseauSocialP, BorderLayout.NORTH);
 		
 		btnReseauSocial.addActionListener(new ActionListener() {
 	  @Override
@@ -236,6 +243,7 @@ public class Menu extends JFrame {
   }
   
   private void displaySimulation(){
+	 
 	  simulationSport =  new JPanel();
 	  simulationSport.setBackground(background);
 	  simulationSport.setPreferredSize(new Dimension(700,700));
@@ -244,10 +252,10 @@ public class Menu extends JFrame {
 	  
 	  simulationdisplay = new JPanel();
 	  simulationdisplay.setBackground(background);
-	  simulationdisplay.setPreferredSize(new Dimension(700,600));
+	  simulationdisplay.setPreferredSize(new Dimension(700,500));
 	  
-	  simulationSport.add(simulationdisplay); 
-		
+	  simulationSport.add(simulationdisplay);
+	  
 	  container.add(simulationSport, BorderLayout.CENTER);
   }
  
