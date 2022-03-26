@@ -26,7 +26,7 @@ import javax.swing.JScrollPane;
 
 public class Menu extends JFrame {
   private JPanel container, profils, choixSport, listeSport, btnSimulationP, simulationSport, simulationdisplay,
-  btnReseauSocialP, btnComparerP;
+  btnReseauSocialP, btnComparerP, retour, deconnexion, aide , header;
 
   private JRadioButton vitesse = new JRadioButton("Vitesse");
   private JRadioButton coup = new JRadioButton("Trou");
@@ -65,7 +65,7 @@ public class Menu extends JFrame {
 	frame.setTitle("Sport2-Menu");
 	frame.setSize(width, height);
 	frame.setResizable(false);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	frame.setLocationRelativeTo(null);
 	frame.setIconImage(new ImageIcon(getClass().getResource("../images/ballon.jpg")).getImage());
 	//-------------- CONTENT PANE ------------------//
@@ -76,7 +76,18 @@ public class Menu extends JFrame {
 	
 
 	//-------------- CONNECT PAGE ------------------//
+    
+    header = new JPanel();
+    header.setBackground(background);
+    header.setSize(new Dimension(1000,100));
+    header.setLayout(new GridLayout(1,3));
+    
     displayReseauSocial();
+    displayAccueil();
+    displayDeconnexion();
+    displayAide();
+    container.add(header, BorderLayout.NORTH);
+    
     displaySimulation();
     displayChoixSport();
     
@@ -94,7 +105,7 @@ public class Menu extends JFrame {
 		btnReseauSocial.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
 		
 		btnReseauSocialP.add(btnReseauSocial);
-		container.add(btnReseauSocialP, BorderLayout.NORTH);
+		header.add(btnReseauSocialP);
 		
 		btnReseauSocial.addActionListener(new ActionListener() {
 	  @Override
@@ -108,7 +119,73 @@ public class Menu extends JFrame {
 	  
 	  });
   }
-  
+  private void displayAide() {
+		aide = new JPanel();
+		aide.setBackground(background);
+		aide.setSize(new Dimension(100,60));
+		aide.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
+		
+		JButton btnAide = new JButton("Aide");
+		btnAide.setBackground(Color.WHITE);
+		btnAide.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+		
+		aide.add(btnAide);
+		header.add(aide);
+		
+		btnAide.addActionListener(new ActionListener() {
+			  @Override
+			  public void actionPerformed(ActionEvent e) {
+					//new Aide();
+			  	}
+		});
+	}
+  private void displayAccueil() {
+	  	retour = new JPanel();
+		retour.setBackground(background);
+		retour.setPreferredSize(new Dimension(300,60));
+		retour.setLayout(new FlowLayout(10, 100, 20));
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.setBackground(Color.WHITE);
+		btnRetour.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+		
+		retour.add(btnRetour);
+		header.add(retour);
+		
+		btnRetour.addActionListener(new ActionListener() {
+	  @Override
+	  public void actionPerformed(ActionEvent e) {
+		  container.removeAll();
+		  container.add(new Accueil(id_utilisateur, container, frame));
+		  frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		  container.updateUI();
+		  container.revalidate();
+		  container.repaint();
+	  	}
+	  
+	  });
+  }
+  private void displayDeconnexion() {
+		deconnexion = new JPanel();
+		deconnexion.setBackground(background);
+		deconnexion.setSize(new Dimension(100,60));
+		deconnexion.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
+		
+		JButton btnDeconnexion = new JButton("Deconnexion");
+		btnDeconnexion.setBackground(Color.WHITE);
+		btnDeconnexion.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+		
+		deconnexion.add(btnDeconnexion);
+		header.add(deconnexion);
+		
+		btnDeconnexion.addActionListener(new ActionListener() {
+			  @Override
+			  public void actionPerformed(ActionEvent e) {
+				  	frame.dispose();
+					new Connexion();
+			  	}
+		});
+  }
   private void displayChoixSport(){
 	  choixSport = new JPanel();
 	  choixSport.setBackground(background);
