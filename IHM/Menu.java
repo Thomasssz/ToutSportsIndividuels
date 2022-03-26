@@ -24,8 +24,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
 
-public class Menu extends JFrame {
-  private JPanel container, profils, choixSport, listeSport, btnSimulationP, simulationSport, simulationdisplay,
+public class Menu extends JPanel {
+  private JPanel profils, choixSport, listeSport, btnSimulationP, simulationSport, simulationdisplay,
   btnReseauSocialP, btnComparerP, retour, deconnexion, aide , header;
 
   private JRadioButton vitesse = new JRadioButton("Vitesse");
@@ -46,33 +46,32 @@ public class Menu extends JFrame {
   private JLabel labelPlonger = new JLabel("Plongee");
   private JLabel labelCourse = new JLabel("Course");
   private JLabel labelEscalade = new JLabel("Escalade");
-
+  private JLabel imageSport;
+  
+  private JButton btnSimulation = new JButton("SIMULATION");
+  
+  private BufferedImage image;
+  
   private Color background = new Color(63, 149, 245);
   private int width = 1000;
   private int height = 800;
   
   private int id_utilisateur;
 
-  private JFrame frame;
+  private ContainerPanels frame;
   private JPanel sportParameterC = new JPanel();
   private JPanel sportParameter = new JPanel();
   
-  public Menu(int id_utilisateur){
+  public Menu(int id_utilisateur , String sport, ContainerPanels frame){
 	super();
-	frame=this;
-	
+
+	this.frame = frame;
 	this.id_utilisateur = id_utilisateur;
-	frame.setTitle("Sport2-Menu");
-	frame.setSize(width, height);
-	frame.setResizable(false);
-	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	frame.setLocationRelativeTo(null);
-	frame.setIconImage(new ImageIcon(getClass().getResource("../images/ballon.jpg")).getImage());
+	
 	//-------------- CONTENT PANE ------------------//
-    container = new JPanel();
-    container.setPreferredSize(new Dimension(width, height));
-    container.setBackground(background);
-    container.setLayout(new BorderLayout());
+	this.setPreferredSize(new Dimension(width, height));
+	this.setBackground(background);
+	this.setLayout(new BorderLayout());
 	
 
 	//-------------- CONNECT PAGE ------------------//
@@ -86,13 +85,13 @@ public class Menu extends JFrame {
     displayAccueil();
     displayDeconnexion();
     displayAide();
-    container.add(header, BorderLayout.NORTH);
+    this.add(header, BorderLayout.NORTH);
     
     displaySimulation();
-    displayChoixSport();
+    displayChoixSport(sport);
     
-    frame.setContentPane(container);
-    frame.setVisible(true);
+    /*frame.setContentPane(container);
+    frame.setVisible(true);*/
   }
   private void displayReseauSocial() {
 		btnReseauSocialP = new JPanel();
@@ -110,11 +109,7 @@ public class Menu extends JFrame {
 		btnReseauSocial.addActionListener(new ActionListener() {
 	  @Override
 	  public void actionPerformed(ActionEvent e) {
-		  container.removeAll();
-		  container.add(new PanelAmis(id_utilisateur));
-		  container.updateUI();
-		  container.revalidate();
-		  container.repaint();
+		  frame.displayAmis();
 	  	}
 	  
 	  });
@@ -155,12 +150,7 @@ public class Menu extends JFrame {
 		btnRetour.addActionListener(new ActionListener() {
 	  @Override
 	  public void actionPerformed(ActionEvent e) {
-		  container.removeAll();
-		  container.add(new Accueil(id_utilisateur, container, frame));
-		  frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		  container.updateUI();
-		  container.revalidate();
-		  container.repaint();
+		  frame.displayAccueil();
 	  	}
 	  
 	  });
@@ -186,15 +176,15 @@ public class Menu extends JFrame {
 			  	}
 		});
   }
-  private void displayChoixSport(){
+  private void displayChoixSport(String sport){
 	  choixSport = new JPanel();
 	  choixSport.setBackground(background);
-	  choixSport.setPreferredSize(new Dimension(300,350));
+	  choixSport.setPreferredSize(new Dimension(300,150));
 	  choixSport.setLayout(new FlowLayout());
 	  
 	  listeSport = new JPanel();
 	  listeSport.setBackground(Color.WHITE);
-	  listeSport.setPreferredSize(new Dimension(300,250));
+	  listeSport.setPreferredSize(new Dimension(300,90));
 	  listeSport.setBorder(BorderFactory.createLineBorder(background, 10));
 	  listeSport.setLayout(new GridLayout(0, 3));
 	 
@@ -203,48 +193,31 @@ public class Menu extends JFrame {
 	  btnSimulationP.setPreferredSize(new Dimension(300,60));
 	  btnSimulationP.setLayout(new FlowLayout(10, 100, 20));
 	  
-	  JButton btnSimulation = new JButton("SIMULATION");
+	 
 	  btnSimulation.setBackground(Color.WHITE);
 	  btnSimulation.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
-   
-	  vitesse.setBackground(Color.WHITE);
-	  coup.setBackground(Color.WHITE);
-	  statistique.setBackground(Color.WHITE);
-	  penalite.setBackground(Color.WHITE);
-	  profondeur.setBackground(Color.WHITE);
-	  oxygene.setBackground(Color.WHITE);	
-	  vitesse_course.setBackground(Color.WHITE);
-	  kilometre.setBackground(Color.WHITE);
-	  cotation.setBackground(Color.WHITE);
-	  prise.setBackground(Color.WHITE);
-
-	  bg.add(vitesse);
-	  bg.add(coup);
-	  bg.add(statistique);
-	  bg.add(penalite);
-	  bg.add(profondeur);
-	  bg.add(oxygene);
-	  bg.add(prise);
-	  bg.add(cotation);
-	  bg.add(vitesse_course);
-	  bg.add(kilometre);
-
-	  listeSport.add(labelGolf);
-	  listeSport.add(vitesse);
-	  listeSport.add(coup);
-	  listeSport.add(labelRugby);
-	  listeSport.add(statistique);
-	  listeSport.add(penalite);
-	  listeSport.add(labelPlonger);
-	  listeSport.add(profondeur);
-	  listeSport.add(oxygene);
-	  listeSport.add(labelCourse);
-	  listeSport.add(vitesse_course);
-	  listeSport.add(kilometre);
-	  listeSport.add(labelEscalade);
-	  listeSport.add(cotation);
-	  listeSport.add(prise);
-	
+	  
+	  try {
+          image = ImageIO.read(getClass().getResource("../images/" + sport + ".jpg"));
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+  	  imageSport = new JLabel(new ImageIcon(image));
+	  simulationSport.add(imageSport, BorderLayout.NORTH);
+	  
+	  switch (sport ) {
+	  	case "course": 
+		  course();
+	  	break;
+	  	case "rugby": rugby();
+	  	break;
+	  	case "plongee": plongee();
+	  	break;
+	  	case "golf": golf();
+	  	break;
+	  	case "escalade": escalade();
+	  	break;
+	  }
 	  choixSport.add(listeSport);
 
 	  btnSimulationP.add(btnSimulation);
@@ -255,87 +228,164 @@ public class Menu extends JFrame {
 	  sportParameterC.add(sportParameter);
 	  choixSport.add(sportParameterC);
 	  
-	  btnSimulation.addActionListener(new ActionListener() {
-	  @Override
-	  public void actionPerformed(ActionEvent e) {
-		if (vitesse.isSelected()) {
-			sportParameterC.remove(sportParameter);
-			sportParameter = new Vitesse_golfIhm(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-		}
-		else if (coup.isSelected()) {
-			sportParameterC.remove(sportParameter);
-			sportParameter = new CoupIhm(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-		}
-		else if (statistique.isSelected()) {
-			sportParameterC.remove(sportParameter);
-			sportParameter = new StatistiqueIhm(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-			
-		}
-		else if (penalite.isSelected()) {
-			sportParameterC.remove(sportParameter);
-			sportParameter = new PenaliteIhm(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-			
-		}
-		else if (profondeur.isSelected()){
-			sportParameterC.remove(sportParameter);
-			sportParameter = new ProfondeurIhm(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-		}
-		else if (oxygene.isSelected()){
-			sportParameterC.remove(sportParameter);
-			sportParameter = new OxygeneIhm(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-
-		}
-		else if (vitesse_course.isSelected()){
-			sportParameterC.remove(sportParameter);
-			sportParameter = new Vitesse_courseIhm(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-		}
-		else if (kilometre.isSelected()){
-			sportParameterC.remove(sportParameter);
-			sportParameter = new KilometreIhm(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-		}
-		else if (cotation.isSelected()){
-			sportParameterC.remove(sportParameter);
-			sportParameter = new CotationIHM(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-		}
-		else if (prise.isSelected()){
-			sportParameterC.remove(sportParameter);
-			sportParameter = new PriseIHM(id_utilisateur, simulationdisplay);
-			sportParameterC.add(sportParameter);
-		}
-		}
-	  });
-	  
 	  vitesse.setSelected(true);
 	
-	  container.add(choixSport, BorderLayout.WEST);
+	  this.add(choixSport, BorderLayout.WEST);
   }
-  
+  private void golf() {
+	  vitesse.setBackground(Color.WHITE);
+	  coup.setBackground(Color.WHITE);
+	  
+	  bg.add(vitesse);
+	  bg.add(coup);
+	  
+	  listeSport.add(labelGolf);
+	  listeSport.add(vitesse);
+	  listeSport.add(coup);
+	  
+	  btnSimulation.addActionListener(new ActionListener() {
+		  @Override
+		  public void actionPerformed(ActionEvent e) {
+			if (vitesse.isSelected()) {
+				sportParameterC.remove(sportParameter);
+				sportParameter = new Vitesse_golfIhm(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+			}
+			else if (coup.isSelected()) {
+				sportParameterC.remove(sportParameter);
+				sportParameter = new CoupIhm(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+			}
+		  }
+	  });
+  }
+  private void rugby() {
+	  statistique.setBackground(Color.WHITE);
+	  penalite.setBackground(Color.WHITE);
+	  
+	  bg.add(statistique);
+	  bg.add(penalite);
+	  
+	  listeSport.add(labelRugby);
+	  listeSport.add(statistique);
+	  listeSport.add(penalite);
+	  btnSimulation.addActionListener(new ActionListener() {
+		  @Override
+		  public void actionPerformed(ActionEvent e) {
+			if (statistique.isSelected()) {
+				sportParameterC.remove(sportParameter);
+				sportParameter = new StatistiqueIhm(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+				
+			}
+			else if (penalite.isSelected()) {
+				sportParameterC.remove(sportParameter);
+				sportParameter = new PenaliteIhm(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+				
+			}
+		  }
+	  });
+  }
+  private void plongee() {
+	  profondeur.setBackground(Color.WHITE);
+	  oxygene.setBackground(Color.WHITE);	
+	  
+	  bg.add(profondeur);
+	  bg.add(oxygene);
+	  
+	  listeSport.add(labelPlonger);
+	  listeSport.add(profondeur);
+	  listeSport.add(oxygene);
+	  
+	  btnSimulation.addActionListener(new ActionListener() {
+		  @Override
+		  public void actionPerformed(ActionEvent e) {
+			if (profondeur.isSelected()){
+				sportParameterC.remove(sportParameter);
+				sportParameter = new ProfondeurIhm(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+			}
+			else if (oxygene.isSelected()){
+				sportParameterC.remove(sportParameter);
+				sportParameter = new OxygeneIhm(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+
+			}
+		  }
+	  });
+  }
+  private void course() {
+	  bg.add(vitesse_course);
+	  bg.add(kilometre);
+	  
+	  vitesse_course.setBackground(Color.WHITE);
+	  kilometre.setBackground(Color.WHITE);
+	  
+	  listeSport.add(labelCourse);
+	  listeSport.add(vitesse_course);
+	  listeSport.add(kilometre);
+	  
+	  btnSimulation.addActionListener(new ActionListener() {
+		  @Override
+		  public void actionPerformed(ActionEvent e) {
+			 if (vitesse_course.isSelected()){
+				sportParameterC.remove(sportParameter);
+				sportParameter = new Vitesse_courseIhm(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+			}
+			else if (kilometre.isSelected()){
+				sportParameterC.remove(sportParameter);
+				sportParameter = new KilometreIhm(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+			}
+		  }
+	  });
+  }
+	
+  private void escalade() {
+	  cotation.setBackground(Color.WHITE);
+	  prise.setBackground(Color.WHITE);
+
+	  bg.add(prise);
+	  bg.add(cotation);
+	  
+	  listeSport.add(labelEscalade);
+	  listeSport.add(cotation);
+	  listeSport.add(prise);
+	  
+	  btnSimulation.addActionListener(new ActionListener() {
+		  @Override
+		  public void actionPerformed(ActionEvent e) {
+			if (cotation.isSelected()){
+				sportParameterC.remove(sportParameter);
+				sportParameter = new CotationIHM(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+			}
+			else if (prise.isSelected()){
+				sportParameterC.remove(sportParameter);
+				sportParameter = new PriseIHM(id_utilisateur, simulationdisplay);
+				sportParameterC.add(sportParameter);
+			}
+		  }
+	  });
+  }
   private void displaySimulation(){
 	 
 	  simulationSport =  new JPanel();
 	  simulationSport.setBackground(background);
 	  simulationSport.setPreferredSize(new Dimension(700,700));
 	  //simulationSport.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-	  simulationSport.setLayout(new FlowLayout());
+	  simulationSport.setLayout(new BorderLayout());
 	  
 	  simulationdisplay = new JPanel();
 	  simulationdisplay.setBackground(background);
 	  simulationdisplay.setPreferredSize(new Dimension(700,500));
 	  
-	  simulationSport.add(simulationdisplay);
+	  simulationSport.add(simulationdisplay, BorderLayout.CENTER);
 	  
-	  container.add(simulationSport, BorderLayout.CENTER);
+	  this.add(simulationSport, BorderLayout.CENTER);
   }
- 
 /*
   public static void main(String[] args) {
 

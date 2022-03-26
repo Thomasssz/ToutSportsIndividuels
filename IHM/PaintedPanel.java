@@ -15,6 +15,7 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
  
 public class PaintedPanel extends JPanel {
@@ -29,7 +30,7 @@ public class PaintedPanel extends JPanel {
 	
 	private int id_utilisateur;
      
-    public PaintedPanel(URL  url , JButton btn){
+    public PaintedPanel(URL  url , JButton btn , String sport, ContainerPanels frame){
     	this.setPreferredSize(new Dimension(400,160));
     	//this.setBorder(BorderFactory.createLineBorder(background,10));
     	this.setLayout(new FlowLayout(FlowLayout.CENTER,0 , 30));
@@ -57,7 +58,7 @@ public class PaintedPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Menu(id_utilisateur);
+				frame.displayMenu(sport);
 			}
 		});
     }

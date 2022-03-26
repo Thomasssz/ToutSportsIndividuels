@@ -1,22 +1,14 @@
 package IHM;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import org.primefaces.component.graphicimage.GraphicImageRenderer;
 
 public class Accueil extends JPanel{
 
@@ -24,7 +16,7 @@ public class Accueil extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -801736552171033117L;
-	private JPanel container, sports, header, btnReseauSocialP, deconnexion, aide, golf, plongee, rugby , course, escalade, menu;
+	private JPanel sports, header, btnReseauSocialP, deconnexion, aide, golf, plongee, rugby , course, escalade;
 	
 	private URL golfIcon, plongeeIcon, rugbyIcon, courseIcon, escaladeIcon;
 	private JButton golfBtn = new JButton("    GOLF   ");
@@ -38,15 +30,15 @@ public class Accueil extends JPanel{
 	  private int height = 800;
 	  
 	  private int id_utilisateur;
-	  private JFrame frame;
+	  private ContainerPanels frame;
 
 	  
-	public Accueil (int id_utilisateur, JPanel menu, JFrame frame) {
-
-		this.id_utilisateur = id_utilisateur;
-		this.menu = menu;
+	public Accueil (int id_utilisateur, ContainerPanels frame) {
+		super();
 		this.frame = frame;
 		
+		this.id_utilisateur = id_utilisateur;
+		   
 		this.setSize(width, height);
 
 		this.setPreferredSize(new Dimension(width, height));
@@ -81,11 +73,7 @@ public class Accueil extends JPanel{
 		btnReseauSocial.addActionListener(new ActionListener() {
 	  @Override
 	  public void actionPerformed(ActionEvent e) {
-		  menu.removeAll();
-		  menu.add(new PanelAmis(id_utilisateur));
-		  menu.updateUI();
-		  menu.revalidate();
-		  menu.repaint();
+		  frame.displayAmis();
 	  	}
 	  
 	  });
@@ -143,11 +131,11 @@ public class Accueil extends JPanel{
 		courseIcon = displayImage("course");
 		escaladeIcon = displayImage("escalade");
 		
-		golf = new PaintedPanel(golfIcon, golfBtn);
-		plongee = new PaintedPanel(plongeeIcon, plongeeBtn);
-		rugby = new PaintedPanel(rugbyIcon, rugbyBtn);
-		course = new PaintedPanel(courseIcon, courseBtn);
-		escalade = new PaintedPanel(escaladeIcon, escaladeBtn);
+		golf = new PaintedPanel(golfIcon, golfBtn,"golf", frame);
+		plongee = new PaintedPanel(plongeeIcon, plongeeBtn, "plongee", frame);
+		rugby = new PaintedPanel(rugbyIcon, rugbyBtn, "rugby", frame);
+		course = new PaintedPanel(courseIcon, courseBtn, "course", frame);
+		escalade = new PaintedPanel(escaladeIcon, escaladeBtn, "escalade", frame);
 		
 		sports.add(golf);
 		sports.add(plongee);

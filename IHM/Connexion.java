@@ -227,7 +227,7 @@ public class Connexion extends JFrame
 	{
 		//global.add(new Connexion(), BorderLayout.CENTER);
 		//global.repaint();
-		new Menu(id_utilisateur);
+		new ContainerPanels(id_utilisateur);
 		this.setVisible(false);
 	}
 	
