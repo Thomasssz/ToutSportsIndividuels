@@ -47,6 +47,38 @@ public class GestionAmis {
 		}
 		
 		
+		
+		
+		transaction.commit();
+		return ajoutAmis.getAccepter();
+
+	}
+	
+public int rejetAmis(Utilisateur amis,Utilisateur user) {
+		
+		
+		session = DBConnection.getSession();
+		transaction = session.beginTransaction();
+		Amis ajoutAmis /*= new Amis(amis,user)*/ = null;
+		//deleteAmis.setId_amis(amis.getId_utilisteur());
+		Query query = session.createQuery("from Amis where utilisateur_id_utilisateur ="+user.getId_utilisteur()+" and amis_id_utilisateur ="+amis.getId_utilisteur());
+		//System.out.println("essai"+deleteAmis);
+		
+		@SuppressWarnings("rawtypes")
+		List result = query.list();
+		//Utilisateur u = null;
+
+		if(result.size() == 1) {
+
+			ajoutAmis = (Amis) result.get(0);
+			ajoutAmis.setAccepter(2);
+			session.persist(ajoutAmis);
+
+		}
+		
+		
+		
+		
 		transaction.commit();
 		return ajoutAmis.getAccepter();
 
@@ -73,6 +105,32 @@ public class GestionAmis {
 		transaction.commit();
 		return valider;
 	}
+	public int dejaAmisRefuser(Utilisateur amis,Utilisateur user) {
+		int refuser = 0;
+		session = DBConnection.getSession();
+		transaction = session.beginTransaction();
+		Amis dejaAmisRefuser /*= new Amis(amis,user)*/ = null;
+
+		Query query = session.createQuery("from Amis where utilisateur_id_utilisateur ="+user.getId_utilisteur()+" and amis_id_utilisateur ="+amis.getId_utilisteur()+" and accepter=2");
+		List result = query.list();
+		//Utilisateur u = null;
+
+		if(result.size() == 1)
+		{
+			refuser=1;
+			dejaAmisRefuser = (Amis) result.get(0);
+			session.delete(dejaAmisRefuser);
+			
+
+		}
+		else {
+			refuser=0;
+		}
+		
+		
+		transaction.commit();
+		return refuser;
+	}
 	
 	public int requeteAmis(Utilisateur amis,Utilisateur user) {
 		Amis ajoutAmis = new Amis(amis,user);
@@ -82,6 +140,32 @@ public class GestionAmis {
 		session.save(ajoutAmis);
 		transaction.commit();
 		return ajoutAmis.getAccepter();
+	}
+	
+public void deleteRequeteAmis() {
+		
+		session = DBConnection.getSession();
+		transaction = session.beginTransaction();
+		Amis deleteAmis /*= new Amis(amis,user)*/;
+		//deleteAmis.setId_amis(amis.getId_utilisteur());
+		Query query = session.createQuery("from Amis where accepter= 2");
+		//System.out.println("essai"+deleteAmis);
+		
+		@SuppressWarnings("rawtypes")
+		List result = query.list();
+		//Utilisateur u = null;
+
+		for (int i = 0 ; i < result.size() ; i++) {
+			//System.out.println(result.size() + " cest ok ");
+			deleteAmis = (Amis) result.get(i);
+			System.out.println(deleteAmis);
+			session.delete(deleteAmis);
+
+		
+		}
+		
+		transaction.commit();
+
 	}
 	
 	public void deleteAmis(Utilisateur amis,Utilisateur user) {
