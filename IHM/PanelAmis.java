@@ -47,7 +47,7 @@ public class PanelAmis extends JPanel {
 	private Utilisateur amis,ajoutAmis;
 
 	// private JFrame frame;
-	 private JPanel container, listAmis, recherche,info,demandeAmis;
+	 private JPanel container, listAmis, recherche,info,demandeAmis,header,btnReseauSocialP, deconnexion, aide,retour;
 	 private JPanel panLigneDemande [] ;
 	 private JButton ajout,suppr,rechercher,afficher;
 	 private JButton [] btnAccepter,btnRefuser;
@@ -69,16 +69,16 @@ public class PanelAmis extends JPanel {
 
   private String listElem[]= {}; 
   private String listDemandeAmis[]= {}; 
-
-
+  private ContainerPanels frame;
   private JList list;
   private  GridLayout  grid = new GridLayout(2,0);
-private int j=0;
   
-  public PanelAmis(int id_utilisateur){
+  public PanelAmis(int id_utilisateur, ContainerPanels frame){
 	super();
 	//frame=this;
 	this.id_utilisateur = id_utilisateur;
+	this.frame = frame;
+
 
 	/*frame.setTitle("Sport2-Menu");
 	frame.setSize(width, height);
@@ -86,17 +86,32 @@ private int j=0;
 	frame.setResizable(false);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setLocationRelativeTo(null);*/
- 
+	this.setLayout(new  BorderLayout());
+
 	//-------------- CONTENT PANE ------------------//
     container = new JPanel();
     container.setPreferredSize(new Dimension(width, height));
     container.setBackground(background);
     container.setLayout(null);
+    
+    
+    
+    header = new JPanel();
+    header.setBackground(background);
+    header.setSize(new Dimension(1000,100));
+    header.setLayout(new GridLayout(1,3));
+    
+    //displayReseauSocial();
+    displayAccueil();
+    displayDeconnexion();
+    displayAide();
+	this.add(header,BorderLayout.NORTH);
+
    
     
     listAmis=new JPanel();
 	listAmis.setLayout(new BorderLayout( ));
-	listAmis.setBounds((int) (width*0.05), 75, (int) (width*0.40), 405);
+	listAmis.setBounds((int) (width*0.05), 75, (int) (width*0.40), 300);
 	listAmis.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 	listAmis.setBackground(new Color(255, 255, 255));
 	
@@ -175,7 +190,7 @@ private int j=0;
 	  
 	  demandeAmis = new JPanel();
 		demandeAmis.setLayout(new BorderLayout( ));
-		demandeAmis.setBounds((int) (width*0.05), 490, (int) (width*0.40), 200);
+		demandeAmis.setBounds((int) (width*0.05), 385, (int) (width*0.40), 100);
 		demandeAmis.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		demandeAmis.setBackground(new Color(255, 255, 255));
 		
@@ -377,7 +392,91 @@ private int j=0;
     //frame.setContentPane(container);
    // frame.setVisible(true);
   }
-
+  private void displayReseauSocial() {
+		btnReseauSocialP = new JPanel();
+		btnReseauSocialP.setBackground(background);
+		btnReseauSocialP.setSize(new Dimension(100,60));
+		btnReseauSocialP.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
+		
+		JButton btnReseauSocial = new JButton("Reseau Social");
+		btnReseauSocial.setBackground(Color.WHITE);
+		btnReseauSocial.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+		
+		btnReseauSocialP.add(btnReseauSocial);
+		header.add(btnReseauSocialP);
+		
+		btnReseauSocial.addActionListener(new ActionListener() {
+	  @Override
+	  public void actionPerformed(ActionEvent e) {
+		  frame.displayAmis();
+	  	}
+	  
+	  });
+	}
+  
+  private void displayAccueil() {
+	  	retour = new JPanel();
+		retour.setBackground(background);
+		retour.setPreferredSize(new Dimension(100,60));
+		retour.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
+		
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.setBackground(Color.WHITE);
+		btnRetour.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+		
+		retour.add(btnRetour);
+		header.add(retour);
+		
+		btnRetour.addActionListener(new ActionListener() {
+	  @Override
+	  public void actionPerformed(ActionEvent e) {
+		  frame.displayAccueil();
+	  	}
+	  
+	  });
+}
+  
+  private void displayDeconnexion() {
+		deconnexion = new JPanel();
+		deconnexion.setBackground(background);
+		deconnexion.setSize(new Dimension(100,60));
+		deconnexion.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
+		
+		JButton btnDeconnexion = new JButton("Deconnexion");
+		btnDeconnexion.setBackground(Color.WHITE);
+		btnDeconnexion.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+		
+		deconnexion.add(btnDeconnexion);
+		header.add(deconnexion);
+		
+		btnDeconnexion.addActionListener(new ActionListener() {
+			  @Override
+			  public void actionPerformed(ActionEvent e) {
+				  	frame.dispose();
+					new Connexion();
+			  	}
+		});
+	}
+	private void displayAide() {
+		aide = new JPanel();
+		aide.setBackground(background);
+		aide.setSize(new Dimension(100,60));
+		aide.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
+		
+		JButton btnAide = new JButton("Aide");
+		btnAide.setBackground(Color.WHITE);
+		btnAide.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+		
+		aide.add(btnAide);
+		header.add(aide);
+		
+		btnAide.addActionListener(new ActionListener() {
+			  @Override
+			  public void actionPerformed(ActionEvent e) {
+					//new Aide();
+			  	}
+		});
+	}
   public String [] jlistAmis() {
 	  GestionAmis ga = new GestionAmis();
 	    
