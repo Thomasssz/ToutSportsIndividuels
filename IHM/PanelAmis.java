@@ -215,7 +215,7 @@ private int j=0;
 			panLigneDemande[i].add(btnRefuser[i]);
 
 			panLoginDemande.add(panLigneDemande[i]);
-			
+
 			btnAccepter[i].addActionListener(new ActionListener() {
 				  @Override
 				  public void actionPerformed(ActionEvent e) {
@@ -313,28 +313,50 @@ private int j=0;
 						    amis = ga.findUser(login);
 							utilisateur = gm.findID(id_utilisateur);
 
+
 							//ga.addAmis(amis, utilisateur);//ajout de l'amis apres avoir accepter
 							//ga.deleteAmis(amis, utilisateur);//ajout de l'amis apres avoir accepter
-							ga.deleteAmis(utilisateur,amis );//ajout de l'amis apres avoir accepter
-							
+							ga.rejetAmis(utilisateur, amis);//ajout de l'amis apres avoir accepter
+
 							for (int i = 0; i<amisDemandeList.size(); i++) {
+							     //amisDemandeList = ga.arrayDemandeAmis(id_utilisateur);
+
 								panelLogin = panLigneDemande[i].getName();
 								//System.out.println(panelLogin+ "   "+ login);
-								System.out.println(panelLogin);
+								//System.out.println("apres for : "+amisDemandeList);
 
-								//amisDemandeList.remove(amisDemandeList.get(i));
 
-								if (panLigneDemande[i].getName() == login) {
+
+								if (panelLogin == login) {
+								    // amisDemandeList = ga.arrayDemandeAmis(id_utilisateur);
+
+
 									panLigneDemande[i].removeAll();
 									panLigneDemande[i].updateUI();
 									panLigneDemande[i].revalidate();
 									panLigneDemande[i].repaint();
+
 								}
-								//System.out.println("apres supppr  "   +amisDemandeList);
 
 
 							}
+							
+							 /*	amisDemandeList = ga.arrayDemandeAmis(id_utilisateur);
+							    amis = ga.findUser(login);
+								utilisateur = gm.findID(id_utilisateur);*/
+
+
+								
+							
+
+
+								
+							
 						}
+					    /* amisDemandeList = ga.arrayDemandeAmis(id_utilisateur);
+							System.out.println(amisDemandeList);
+							ga.deleteRequeteAmis();*/
+					     
 				  	}
 					  
 				  });
@@ -441,12 +463,17 @@ private int j=0;
 								  id_amis = amis.getId_utilisteur();
 								  ajoutAmis = ga.findIdAmis(id_amis,id_utilisateur);
 								  utilisateur = gm.findID(id_utilisateur);
-								  //dejaAmis = 
 								  int cas1;
 								  int cas2;
+								  int cas1bis;
+								  int cas2bis;
+								 
+								 	
 								  
 
 								  if (ajoutAmis == null ) {
+										// System.out.println("test deja amis");
+
 									  if (amis.getId_utilisteur() == utilisateur.getId_utilisteur()) {
 											JOptionPane.showMessageDialog(null, "Vous ne pouvez pas vous ajouter vous meme a votre liste d'amis");
 
@@ -456,21 +483,28 @@ private int j=0;
 
 									  }*/
 									  else {
-										  cas1 =  ga.dejaAmis(amis,utilisateur);
-											 //System.out.println("test deja amis"+cas1);
+										  		cas1 =  ga.dejaAmis(amis,utilisateur);
+										  		//System.out.println("test deja amis"+cas1);
 											 
-											  cas2 =  ga.dejaAmis(utilisateur,amis);
-												 //System.out.println("test deja amis deuxieme"+cas2);
-											  if(cas1 == 1 || cas2 == 1) {
+										  		cas2 =  ga.dejaAmis(utilisateur,amis);
+										  		
+										  		 cas1bis=ga.dejaAmisRefuser(amis, utilisateur);
+												 System.out.println("test deja amis"+cas1bis);
+
+											  cas2bis=ga.dejaAmisRefuser(utilisateur,amis );
+												 System.out.println("test deja amis deuxieme"+cas2bis);
+											  
+										  		if((cas1 == 1 || cas2 == 1 )&&  cas2bis != 1 ) {
 													JOptionPane.showMessageDialog(null, "Utilisateur est deja dans votre liste d'amis");
 
-											  }
+										  		}
+										  		
 											  else {
 
 
-										  int a = ga.requeteAmis(amis, utilisateur);
-										 // System.out.println(a);
-											JOptionPane.showMessageDialog(null, "Requete d'amis envoyé");
+												  int a = ga.requeteAmis(amis, utilisateur);
+												 // System.out.println(a);
+													JOptionPane.showMessageDialog(null, "Requete d'amis envoyé");
 											
 											  }
 
@@ -479,8 +513,21 @@ private int j=0;
 									  }
 									  
 								  }
+								 // else if () {}
 								  else {
+									  cas1=ga.dejaAmisRefuser(amis, utilisateur);
+										 System.out.println("test deja amis"+cas1);
+
+									  cas2=ga.dejaAmisRefuser(utilisateur,amis );
+										 System.out.println("test deja amis deuxieme"+cas2);
+
+									  if (cas1 == 1 || cas2 == 1) {
+										  ga.requeteAmis(amis, utilisateur);
+									  }
+									  else {
 										JOptionPane.showMessageDialog(null, "Utilisateur est deja dans votre liste d'amis");
+										
+									  }
 
 								  }
 								  
