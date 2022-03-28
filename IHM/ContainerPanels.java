@@ -60,7 +60,7 @@ public class ContainerPanels extends JFrame{
 	}
 	public void displayAmis() {
 		container.removeAll();
-		container.add(new PanelAmis(id_utilisateur));
+		container.add(new PanelAmis(id_utilisateur,this));
 		container.updateUI();
 		container.revalidate();
 		container.repaint();
