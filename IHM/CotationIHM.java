@@ -11,17 +11,13 @@ import java.awt.*;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import graph.GraphEscaladeLine;
-import graph.GraphGolfBar;
-import graph.GraphGolfPoint;
 import requete.InsertEscalade;
-import requete.InsertGolf;
 
 public class CotationIHM extends JPanel {
 
@@ -29,7 +25,8 @@ public class CotationIHM extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 6438319607381687943L;
-private JPanel cotationP = new JPanel();
+	private JPanel cotationP = new JPanel();
+
   private JTextField cotation = new JTextField(14);
   private JLabel labelCotation = new JLabel("Cotation : ");
   private JRadioButton jrd1= new JRadioButton ("1-4c");
@@ -70,12 +67,12 @@ private JPanel cotationP = new JPanel();
     cotationP.setBorder(BorderFactory.createLineBorder(background, 10));
     
     blockP.setLayout(new BorderLayout());
-    blockP.setPreferredSize(new Dimension(300, 60));
+    blockP.setPreferredSize(new Dimension(300, 40));
     blockP.setBackground(Color.white);
     blockP.setBorder(BorderFactory.createLineBorder(background, 10));
     
     tentativesP.setLayout(new BorderLayout());
-    tentativesP.setPreferredSize(new Dimension(300, 60));
+    tentativesP.setPreferredSize(new Dimension(300, 40));
     tentativesP.setBackground(Color.white);
     tentativesP.setBorder(BorderFactory.createLineBorder(background, 10));
     
@@ -165,10 +162,10 @@ private JPanel cotationP = new JPanel();
    		}
    	});
    	graphiqueButton.setBackground(Color.WHITE);
-    graphiqueButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
+   graphiqueButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
     
     buttonsP.setPreferredSize(new Dimension(300,80));
-    buttonsP.setLayout(new FlowLayout(10, 100, 20));
+    buttonsP.setLayout(new FlowLayout(10, 100, 10));
     buttonsP.setBackground(background);
    	buttonsP.add(graphiqueButton);
    	
