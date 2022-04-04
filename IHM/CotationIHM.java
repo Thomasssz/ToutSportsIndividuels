@@ -176,6 +176,6 @@ public class CotationIHM extends JPanel {
    	
 	PanelComparaison comp = new PanelComparaison(id_utilisateur);
 	   
-   	this.add(comp.panelComparaison());
+   	this.add(comp.panelComparaison("CotationIHM"));
   }
 }

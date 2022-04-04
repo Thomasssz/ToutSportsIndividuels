@@ -41,7 +41,7 @@ public class Vitesse_courseIhm extends JPanel {
 	public Vitesse_courseIhm(int id_utilisateur, JPanel simulationdisplay){
 		super();
 		this.id_utilisateur = id_utilisateur;
-		this.setPreferredSize(new Dimension(300, 350));
+		this.setPreferredSize(new Dimension(300, 500));
 		this.setBackground(background);
 		this.setLayout(new FlowLayout());
 		
@@ -86,41 +86,41 @@ public class Vitesse_courseIhm extends JPanel {
 	   	graphiqueButton.setBackground(Color.WHITE);
 		graphiqueButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
 		
-		buttonsP.setPreferredSize(new Dimension(300,400));
+		buttonsP.setPreferredSize(new Dimension(300,80));
 		buttonsP.setLayout(new FlowLayout(10, 100, 20));
 		buttonsP.setBackground(background);
 		buttonsP.add(graphiqueButton);
 		
-		String[] listeAmi = {"Ami1", "Ami2", "Ami3"};
+		//String[] listeAmi = {"Ami1", "Ami2", "Ami3"};
 
-        JComboBox<String> jComboBox = new JComboBox<>(listeAmi);
+     //   JComboBox<String> jComboBox = new JComboBox<>(listeAmi);
 
-        JButton comparaison = new JButton("Comparaison");
+       // JButton comparaison = new JButton("Comparaison");
 
 
-        JLabel jLabel = new JLabel();
-        jLabel.setText("Se comparer avec un ami ?");
+    //    JLabel jLabel = new JLabel();
+      //  jLabel.setText("Se comparer avec un ami ?");
 
-        buttonsP.add(jLabel);
-        buttonsP.add(comparaison);
-        buttonsP.add(jComboBox);
+      //  buttonsP.add(jLabel);
+      //  buttonsP.add(comparaison);
+      //  buttonsP.add(jComboBox);
         
 
-        comparaison.addActionListener(new ActionListener() {
+      /*  comparaison.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	GraphCourseLine comp = new GraphCourseLine("Vitesse Moyenne",id_utilisateur);
-            	new Comparaison(id_utilisateur);
+            	//new Comparaison(id_utilisateur);
             }
-        });
+        });*/
 		
-        buttonsP.add(comparaison);
+       // buttonsP.add(comparaison);
         
 		this.add(vitesse_moyenneP );
 		this.add(buttonsP);
 		
 		PanelComparaison comp = new PanelComparaison(id_utilisateur);
 		   
-	   	this.add(comp.panelComparaison());
+	   	this.add(comp.panelComparaison("StatistiqueIhm"));
 	}
 }

@@ -395,7 +395,7 @@ public class Menu extends JPanel {
   }
 
   public static void main(String[] args) {
-	  ContainerPanels frame = new ContainerPanels(1);
-  new Menu(1, "golf", frame);
+	  ContainerPanels frame = new ContainerPanels(3);
+  new Menu(3, "golf", frame);
   }
 }

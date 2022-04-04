@@ -163,6 +163,6 @@ private JPanel parcoursP = new JPanel();
    	
 	PanelComparaison comp = new PanelComparaison(id_utilisateur);
 	   
-   	this.add(comp.panelComparaison());
+   	this.add(comp.panelComparaison("CoupIhm"));
   }
 }
