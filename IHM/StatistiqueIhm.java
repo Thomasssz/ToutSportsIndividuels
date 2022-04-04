@@ -52,7 +52,7 @@ public class StatistiqueIhm extends JPanel {
   public StatistiqueIhm(int id_utilisateur, JPanel simulationdisplay){
 	super();
 	this.id_utilisateur = id_utilisateur;
-	this.setPreferredSize(new Dimension(300, 350));
+	this.setPreferredSize(new Dimension(300, 500));
    // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setBackground(background);
     this.setLayout(new FlowLayout());
@@ -145,5 +145,9 @@ public class StatistiqueIhm extends JPanel {
    	this.add(essaiP);
    	this.add(plaquageP);
    	this.add(buttonsP);
+   	
+	PanelComparaison comp = new PanelComparaison(id_utilisateur);
+	   
+   	this.add(comp.panelComparaison());
   }
 }

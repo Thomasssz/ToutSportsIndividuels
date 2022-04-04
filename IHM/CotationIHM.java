@@ -55,7 +55,7 @@ public class CotationIHM extends JPanel {
   public CotationIHM(int id_utilisateur, JPanel simulationdisplay){
 	super();
 	this.id_utilisateur = id_utilisateur;
-    this.setPreferredSize(new Dimension(300, 400));
+    this.setPreferredSize(new Dimension(300, 500));
     this.setBackground(background);
     this.setLayout(new FlowLayout());
     
@@ -173,5 +173,9 @@ public class CotationIHM extends JPanel {
    	this.add(blockP);
    	this.add(tentativesP );
    	this.add(buttonsP);
+   	
+	PanelComparaison comp = new PanelComparaison(id_utilisateur);
+	   
+   	this.add(comp.panelComparaison());
   }
 }

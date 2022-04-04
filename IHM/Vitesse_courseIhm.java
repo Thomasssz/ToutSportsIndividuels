@@ -118,5 +118,9 @@ public class Vitesse_courseIhm extends JPanel {
         
 		this.add(vitesse_moyenneP );
 		this.add(buttonsP);
+		
+		PanelComparaison comp = new PanelComparaison(id_utilisateur);
+		   
+	   	this.add(comp.panelComparaison());
 	}
 }

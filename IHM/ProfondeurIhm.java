@@ -107,5 +107,9 @@ public class ProfondeurIhm extends JPanel {
 	   	this.add(profondeurP);
 	   	this.add(tempsP);
 	   	this.add(buttonsP);
+	   	
+		PanelComparaison comp = new PanelComparaison(id_utilisateur);
+		   
+	   	this.add(comp.panelComparaison());
 	}
 }

@@ -45,7 +45,7 @@ public class PriseIHM extends JPanel {
 	public PriseIHM(int id_utilisateur, JPanel simulationdisplay){
 		super();
 		this.id_utilisateur = id_utilisateur;
-	    this.setPreferredSize(new Dimension(300, 350));
+	    this.setPreferredSize(new Dimension(300, 500));
 	    this.setBackground(background);
 	    this.setLayout(new FlowLayout());
 	    
@@ -116,6 +116,10 @@ public class PriseIHM extends JPanel {
 	   	this.add(prisesMinP);
 	   	this.add(prisesP);
 	   	this.add(buttonsP);
+	   	
+		PanelComparaison comp = new PanelComparaison(id_utilisateur);
+		   
+	   	this.add(comp.panelComparaison());
 	}
 	
 }

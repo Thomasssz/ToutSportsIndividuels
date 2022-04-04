@@ -106,5 +106,9 @@ public class OxygeneIhm extends JPanel {
    	this.add(consommation_oxygeneP);
    	this.add(profondeurP);
    	this.add(buttonsP);
+   	
+	PanelComparaison comp = new PanelComparaison(id_utilisateur);
+	   
+   	this.add(comp.panelComparaison());
   }
 }

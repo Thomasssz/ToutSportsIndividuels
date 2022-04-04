@@ -47,6 +47,8 @@ public class Menu extends JPanel {
   private JLabel labelCourse = new JLabel("Course");
   private JLabel labelEscalade = new JLabel("Escalade");
   private JLabel imageSport;
+  private JLabel comparer = new JLabel("Comparer à");
+
   
   private JButton btnSimulation = new JButton("SIMULATION");
   
@@ -61,6 +63,7 @@ public class Menu extends JPanel {
   private ContainerPanels frame;
   private JPanel sportParameterC = new JPanel();
   private JPanel sportParameter = new JPanel();
+  private JPanel comparaisonParameter = new JPanel();
   
   public Menu(int id_utilisateur , String sport, ContainerPanels frame){
 	super();
@@ -250,6 +253,7 @@ public class Menu extends JPanel {
 				sportParameterC.remove(sportParameter);
 				sportParameter = new Vitesse_golfIhm(id_utilisateur, simulationdisplay);
 				sportParameterC.add(sportParameter);
+				//sportParameterC.add(comparer);
 			}
 			else if (coup.isSelected()) {
 				sportParameterC.remove(sportParameter);
@@ -277,11 +281,14 @@ public class Menu extends JPanel {
 				sportParameter = new StatistiqueIhm(id_utilisateur, simulationdisplay);
 				sportParameterC.add(sportParameter);
 				
+				
+				
 			}
 			else if (penalite.isSelected()) {
 				sportParameterC.remove(sportParameter);
 				sportParameter = new PenaliteIhm(id_utilisateur, simulationdisplay);
 				sportParameterC.add(sportParameter);
+				
 				
 			}
 		  }
@@ -386,9 +393,9 @@ public class Menu extends JPanel {
 	  
 	  this.add(simulationSport, BorderLayout.CENTER);
   }
-/*
-  public static void main(String[] args) {
 
-  new Menu(14044044);
-  }*/
+  public static void main(String[] args) {
+	  ContainerPanels frame = new ContainerPanels(1);
+  new Menu(1, "golf", frame);
+  }
 }

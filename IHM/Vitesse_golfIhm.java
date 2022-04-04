@@ -7,9 +7,13 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.GridLayout;
+
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +21,9 @@ import javax.swing.JTextField;
 
 import org.jfree.ui.RefineryUtilities;
 
+import data.Amis;
 import graph.GraphGolfPoint;
+import requete.GestionAmis;
 import requete.InsertGolf;
 
 public class Vitesse_golfIhm extends JPanel {
@@ -36,6 +42,7 @@ public class Vitesse_golfIhm extends JPanel {
 	private JPanel buttonsP = new JPanel();
 	private JButton graphiqueButton;
   
+	
 	private Color background = new Color(63, 149, 245);
 	private int id_utilisateur;
 
@@ -102,6 +109,11 @@ public class Vitesse_golfIhm extends JPanel {
 	   	this.add(vitesseP);
 	   	this.add(distanceP);
 	   	this.add(buttonsP);
+	   	
+	   	PanelComparaison comp = new PanelComparaison(id_utilisateur);
+	   
+	   	this.add(comp.panelComparaison());
 	}
+	
 	
 }
