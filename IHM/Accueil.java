@@ -112,10 +112,13 @@ public class Accueil extends JPanel{
 		aide.add(btnAide);
 		header.add(aide);
 		
+		Aide aideF = new Aide(frame);
+		aideF.aideAccueil();
+		
 		btnAide.addActionListener(new ActionListener() {
 			  @Override
 			  public void actionPerformed(ActionEvent e) {
-					//new Aide();
+				  aideF.setVisible(true);	  
 			  	}
 		});
 	}

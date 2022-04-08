@@ -17,11 +17,13 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 
 public class Menu extends JPanel {
@@ -47,10 +49,15 @@ public class Menu extends JPanel {
   private JLabel labelCourse = new JLabel("Course");
   private JLabel labelEscalade = new JLabel("Escalade");
   private JLabel imageSport;
-  private JLabel comparer = new JLabel("Comparer à");
+  private JLabel comparer = new JLabel("Comparer ï¿½");
 
   
   private JButton btnSimulation = new JButton("SIMULATION");
+  
+  private JButton btnAide = new JButton("Aide");
+  private JDialog aideD;
+	private JTextArea aideT;
+	private JScrollPane jspAide;
   
   private BufferedImage image;
   
@@ -123,17 +130,19 @@ public class Menu extends JPanel {
 		aide.setSize(new Dimension(100,60));
 		aide.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
 		
-		JButton btnAide = new JButton("Aide");
+		
 		btnAide.setBackground(Color.WHITE);
 		btnAide.setBorder(BorderFactory.createLineBorder(Color.WHITE, 10));
 		
 		aide.add(btnAide);
 		header.add(aide);
 		
+		Aide aideF = new Aide(frame);
+		aideF.aideMenu();
 		btnAide.addActionListener(new ActionListener() {
 			  @Override
 			  public void actionPerformed(ActionEvent e) {
-					//new Aide();
+					aideF.setVisible(true);	  
 			  	}
 		});
 	}
