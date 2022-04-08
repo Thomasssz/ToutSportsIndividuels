@@ -55,6 +55,7 @@ public class Menu extends JPanel {
   private JButton btnSimulation = new JButton("SIMULATION");
   
   private JButton btnAide = new JButton("Aide");
+  private Aide aideF;
   private JDialog aideD;
 	private JTextArea aideT;
 	private JScrollPane jspAide;
@@ -137,7 +138,7 @@ public class Menu extends JPanel {
 		aide.add(btnAide);
 		header.add(aide);
 		
-		Aide aideF = new Aide(frame);
+		aideF = new Aide(frame);
 		aideF.aideMenu();
 		btnAide.addActionListener(new ActionListener() {
 			  @Override
@@ -370,6 +371,7 @@ public class Menu extends JPanel {
 	  listeSport.add(cotation);
 	  listeSport.add(prise);
 	  
+	  aideF.escalade();
 	  btnSimulation.addActionListener(new ActionListener() {
 		  @Override
 		  public void actionPerformed(ActionEvent e) {
