@@ -138,6 +138,6 @@ public class PenaliteIhm extends JPanel {
 	   	
 		PanelComparaison comp = new PanelComparaison(id_utilisateur);
 		   
-	   	this.add(comp.panelComparaison("OxygeneIhm"));
+	   	this.add(comp.panelComparaison("PenaliteIhm"));
 	}
 }
